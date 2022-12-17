@@ -1,4 +1,4 @@
-use quan_ly_ban_hang;
+use sale_management;
 
 insert into customer (c_name, c_age) values
 ('Minh Quan', 10),

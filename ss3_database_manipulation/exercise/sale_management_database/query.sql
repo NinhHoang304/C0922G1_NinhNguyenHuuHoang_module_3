@@ -1,4 +1,4 @@
-use quan_ly_ban_hang;
+use sale_management;
 
 -- Hiển thị các thông tin  gồm oID, oDate, oPrice của tất cả các hóa đơn trong bảng Order
 select o.o_id, o.o_date, o.o_total_price from orders o;

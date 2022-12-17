@@ -1,5 +1,5 @@
-create database if not exists quan_ly_ban_hang;
-use quan_ly_ban_hang;
+create database if not exists sale_management;
+use sale_management;
 
 create table customer(
   c_id int primary key auto_increment, 

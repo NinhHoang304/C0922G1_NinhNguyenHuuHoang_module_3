@@ -1,4 +1,4 @@
-use quan_ly_sinh_vien;
+use student_management;
 
 insert into class (class_name, start_date, status) values 
 ('A1', '2008-12-20', 1), 

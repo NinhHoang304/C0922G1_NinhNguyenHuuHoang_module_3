@@ -1,4 +1,4 @@
-use quan_ly_sinh_vien;
+use student_management;
 
 -- Hiển thị tất cả các sinh viên có tên bắt đầu bảng ký tự ‘h’
 select * from student where student_name like 'H%';
