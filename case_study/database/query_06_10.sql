@@ -64,8 +64,6 @@ select
     hd.ngay_dat_coc as tien_dat_coc,
     ifnull(sum(so_luong), 0) as so_luong_dich_vu_di_kem
 from hop_dong hd
-join hop_dong_chi_tiet hdct on hdct.ma_hop_dong = hd.ma_hop_dong
-where hd.ma_hop_dong in (select ma_hop_dong from hop_dong
-        where ngay_dat_coc >= 0)
+left join hop_dong_chi_tiet hdct on hdct.ma_hop_dong = hd.ma_hop_dong
 group by hd.ma_hop_dong
 order by hd.ma_hop_dong asc;
