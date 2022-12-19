@@ -16,7 +16,7 @@ where hd.ma_dich_vu not in (select ma_dich_vu from hop_dong
 group by dv.ma_dich_vu 
 order by dv.ma_dich_vu asc;
 
--- 7.Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu
+-- 7.hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu
 -- của tất cả các loại dịch vụ đã từng được khách hàng đặt phòng trong năm 2020 nhưng chưa từng được khách hàng đặt phòng trong năm 2021.
 select 
     dv.ma_dich_vu,
@@ -32,30 +32,33 @@ where hd.ma_dich_vu not in (select ma_dich_vu from hop_dong
         where (year(ngay_lam_hop_dong) = 2021))
 group by dv.ma_dich_vu;
 
--- 8.Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
--- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
+-- 8.hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
+-- học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
 
--- C1
+-- c1
 select distinct ho_ten from khach_hang;
 
--- C2
+-- c2
 select ho_ten from khach_hang
 group by ho_ten;
 
--- C3
+-- c3
 select ho_ten from khach_hang
 union
 select ho_ten from khach_hang;
 
--- 9.Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
-select month(ngay_lam_hop_dong) as thang, count(*) as so_luong_khach_hang from hop_dong
+-- 9.thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
+select 
+    month(ngay_lam_hop_dong) as thang,
+    count(*) as so_luong_khach_hang 
+from hop_dong
 where ngay_lam_hop_dong regexp '^2021'
 group by month(ngay_lam_hop_dong)
 having count(*) >= 1
 order by thang asc;
 
--- 10.Hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu dịch vụ đi kèm. 
--- Kết quả hiển thị bao gồm ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, so_luong_dich_vu_di_kem 
+-- 10.hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu dịch vụ đi kèm. 
+-- kết quả hiển thị bao gồm ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, so_luong_dich_vu_di_kem 
 -- (được tính dựa trên việc sum so_luong ở dich_vu_di_kem).
 select 
     hd.ma_hop_dong,
