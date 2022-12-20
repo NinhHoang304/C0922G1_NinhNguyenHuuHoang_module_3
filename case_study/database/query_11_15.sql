@@ -53,12 +53,16 @@ having sum(so_luong) = (select max(so_luong) from hop_dong_chi_tiet);
 -- thông tin hiển thị bao gồm ma_hop_dong, ten_loai_dich_vu, ten_dich_vu_di_kem, so_lan_su_dung 
 -- (được tính dựa trên việc count các ma_dich_vu_di_kem).
 select 
-    d.ma_dich_vu_di_kem,
-    d.ten_dich_vu_di_kem,
+	hd.ma_hop_dong,
+    ldv.ten_loai_dich_vu,
+    dvdk.ten_dich_vu_di_kem,
     sum(so_luong) as so_lan_su_dung
-from dich_vu_di_kem d 
-join hop_dong_chi_tiet h on h.ma_dich_vu_di_kem = d.ma_dich_vu_di_kem
-group by h.ma_dich_vu_di_kem
+from hop_dong hd
+join hop_dong_chi_tiet hdct on hdct.ma_hop_dong = hd.ma_hop_dong
+join dich_vu_di_kem dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+join dich_vu dv on dv.ma_dich_vu = hd.ma_dich_vu
+join loai_dich_vu ldv on ldv.ma_loai_dich_vu = dv.ma_loai_dich_vu
+group by hdct.ma_dich_vu_di_kem, hd.ma_hop_dong
 having sum(so_luong) = (select min(so_luong) from hop_dong_chi_tiet);
 
 -- 15.	hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, so_dien_thoai, dia_chi 
