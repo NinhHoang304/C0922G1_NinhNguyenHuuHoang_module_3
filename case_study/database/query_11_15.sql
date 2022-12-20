@@ -1,7 +1,7 @@
 use furama_database;
 
 -- 11.	hiển thị thông tin các dịch vụ đi kèm đã được sử dụng bởi những khách hàng
--- có ten_loai_khach là “diamond” và có dia_chi ở “vinh” hoặc “quảng ngãi”.
+-- có ten_loai_khach là “Diamond” và có dia_chi ở “Vinh” hoặc “Quảng Ngãi”.
 select 
 	dvdk.ma_dich_vu_di_kem, 
     dvdk.ten_dich_vu_di_kem
@@ -10,7 +10,7 @@ join khach_hang kh on kh.ma_loai_khach = lk.ma_loai_khach
 join hop_dong hd on hd.ma_khach_hang = kh.ma_khach_hang
 join hop_dong_chi_tiet hdct on hdct.ma_hop_dong = hd.ma_hop_dong
 join dich_vu_di_kem dvdk on dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
-where lk.ten_loai_khach regexp 'diamond' and kh.dia_chi regexp 'vinh|quảng ngãi';
+where lk.ten_loai_khach regexp 'Diamond' and kh.dia_chi regexp 'Vinh|Quảng Ngãi';
 
 -- 12.	hiển thị thông tin ma_hop_dong, ho_ten (nhân viên), ho_ten (khách hàng), so_dien_thoai (khách hàng),
 -- ten_dich_vu, so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở hop_dong_chi_tiet),

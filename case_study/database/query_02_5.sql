@@ -1,20 +1,20 @@
 use furama_database;
 
 -- 2.hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu
--- là một trong các ký tự “h”, “t” hoặc “k” và có tối đa 15 kí tự.
+-- là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 kí tự.
 select * from nhan_vien 
-where substring_index(ho_ten, ' ', -1) rlike '^[h|t|k]'
+where substring_index(ho_ten, ' ', -1) rlike '^[H|T|K]'
 having char_length(ho_ten) <= 15;
 
 -- 3.hiển thị thông tin của tất cả khách hàng
--- có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “đà nẵng” hoặc “quảng trị”.
+-- có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.
 select * from khach_hang 
 where floor(datediff(current_date, ngay_sinh) / 365.25) between 18 and 50
 having dia_chi regexp 'Đà Nẵng|Quảng Trị';
 
 -- 4.đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. 
 -- kết quả hiển thị được sắp xếp tăng dần theo số lần đặt phòng của khách hàng. 
--- chỉ đếm những khách hàng nào có tên loại khách hàng là “diamond”.
+-- chỉ đếm những khách hàng nào có tên loại khách hàng là “Diamond”.
 select 
     kh.ma_khach_hang,
     kh.ho_ten,
