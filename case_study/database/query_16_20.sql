@@ -54,3 +54,43 @@ in (select ma_khach_hang from w_khach_hang where tong_tien > 1000000 and ten_loa
 -- xem lại thay đổi trong danh sách
 select * from khach_hang;
 
+-- 18.	Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
+-- lấy điều kiện
+select h.ma_khach_hang 
+from khach_hang k
+join hop_dong h on k.ma_khach_hang = h.ma_khach_hang
+where year(ngay_lam_hop_dong) < 2021;
+-- xoá
+delete from khach_hang
+where ma_khach_hang in (
+select * from (select h.ma_khach_hang from khach_hang k
+join hop_dong h on k.ma_khach_hang = h.ma_khach_hang
+where year(ngay_lam_hop_dong) < 2021) abc
+);
+
+-- 19.	Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
+-- tạo view
+create view w_dich_vu_di_kem as
+select 
+    d.ma_dich_vu_di_kem,
+    d.ten_dich_vu_di_kem,
+    sum(so_luong) as so_luong_dv_di_kem
+from dich_vu_di_kem d 
+join hop_dong_chi_tiet h on h.ma_dich_vu_di_kem = d.ma_dich_vu_di_kem
+group by h.ma_dich_vu_di_kem
+having sum(so_luong) = (select max(so_luong) from hop_dong_chi_tiet);
+-- sử dụng view lấy điều kiện
+select ma_dich_vu_di_kem from w_dich_vu_di_kem;
+-- update giá
+set sql_safe_updates = 0;
+update dich_vu_di_kem 
+set gia = gia * 2
+where ma_dich_vu_di_kem in (select ma_dich_vu_di_kem from w_dich_vu_di_kem); 
+-- hiển thị sau update
+select * from dich_vu_di_kem;
+
+-- 20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
+-- thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
+select ma_nhan_vien, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi from nhan_vien
+union all
+select ma_khach_hang, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi from khach_hang;
