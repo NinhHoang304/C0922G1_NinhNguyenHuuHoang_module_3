@@ -43,8 +43,14 @@ from
     dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
 group by kh.ma_khach_hang , hd.ma_hop_dong
 order by kh.ma_khach_hang asc;
--- Sử dụng view
-select ten_loai_khach from w_khach_hang 
+-- Sử dụng view lấy điều kiện
+select ma_khach_hang from w_khach_hang 
 where tong_tien > 1000000 and ten_loai_khach regexp 'Platinium';
 -- update
-update ten_loai_khach 
+update khach_hang 
+set ma_loai_khach = 1 
+where ma_khach_hang 
+in (select ma_khach_hang from w_khach_hang where tong_tien > 1000000 and ten_loai_khach regexp 'Platinium');
+-- xem lại thay đổi trong danh sách
+select * from khach_hang;
+
