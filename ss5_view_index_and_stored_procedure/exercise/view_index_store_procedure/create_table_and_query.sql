@@ -79,18 +79,3 @@ begin
 end //
 delimiter ;
 call delete_product(1);
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
