@@ -17,3 +17,34 @@ select * from nhan_vien;
 
 -- 17.	Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond, 
 -- chỉ cập nhật những khách hàng đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
+-- Tạo view
+create view w_khach_hang as 
+select 
+    kh.ma_khach_hang,
+    kh.ho_ten,
+    lk.ten_loai_khach,
+    hd.ma_hop_dong,
+    dv.ten_dich_vu,
+    hd.ngay_lam_hop_dong,
+    hd.ngay_ket_thuc,
+    ifnull(dv.chi_phi_thue + sum(hdct.so_luong * dvdk.gia),
+            dv.chi_phi_thue) as tong_tien
+from
+    khach_hang kh
+        left join
+    loai_khach lk on kh.ma_loai_khach = lk.ma_loai_khach
+        left join
+    hop_dong hd on kh.ma_khach_hang = hd.ma_khach_hang
+        left join
+    hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
+        left join
+    dich_vu_di_kem dvdk on hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
+        left join
+    dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
+group by kh.ma_khach_hang , hd.ma_hop_dong
+order by kh.ma_khach_hang asc;
+-- Sử dụng view
+select ten_loai_khach from w_khach_hang 
+where tong_tien > 1000000 and ten_loai_khach regexp 'Platinium';
+-- update
+update ten_loai_khach 
