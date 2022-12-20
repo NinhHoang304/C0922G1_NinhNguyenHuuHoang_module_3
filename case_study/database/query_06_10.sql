@@ -12,7 +12,7 @@ from dich_vu dv
 join loai_dich_vu ldv on dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
 right join hop_dong hd on dv.ma_dich_vu = hd.ma_dich_vu
 where hd.ma_dich_vu not in (select ma_dich_vu from hop_dong
-        where (month(ngay_lam_hop_dong) between 1 and 3) and (year(ngay_lam_hop_dong) = 2021))
+        where (quarter(ngay_lam_hop_dong) = 1) and (year(ngay_lam_hop_dong) = 2021))
 group by dv.ma_dich_vu 
 order by dv.ma_dich_vu asc;
 

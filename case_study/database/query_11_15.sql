@@ -35,7 +35,7 @@ join dich_vu_di_kem dvdk on hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
 where hd.ma_dich_vu 
 		not in (select ma_dich_vu from hop_dong
         where (year(ngay_lam_hop_dong) = 2021))
-        and month(ngay_lam_hop_dong) between 10 and 12
+        and quarter(ngay_lam_hop_dong) = 4
 group by hd.ma_hop_dong;
 
 -- 13.	hiển thị thông tin các dịch vụ đi kèm được sử dụng nhiều nhất bởi các khách hàng đã đặt phòng. 
