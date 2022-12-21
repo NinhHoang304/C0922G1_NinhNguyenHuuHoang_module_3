@@ -79,4 +79,4 @@ join trinh_do t on n.ma_trinh_do = t.ma_trinh_do
 join bo_phan b on n.ma_bo_phan = b.ma_bo_phan
 join hop_dong h on n.ma_nhan_vien = h.ma_nhan_vien
 group by h.ma_nhan_vien
-having count(h.ma_nhan_vien) <= 3
+having count(h.ma_nhan_vien) <= 3;
