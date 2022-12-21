@@ -23,7 +23,7 @@ begin
     values (old.ngay_lam_hop_dong, new.ngay_lam_hop_dong);
 end //
 delimiter ;
--- function
+-- procedure
 delimiter //
 create procedure update_check_in(IN p_id int, IN p_date datetime)
 begin
