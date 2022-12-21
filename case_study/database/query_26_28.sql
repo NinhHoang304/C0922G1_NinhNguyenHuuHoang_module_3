@@ -44,6 +44,7 @@ delimiter ;
 -- update
 call update_check_in(2, '2020-07-10 00:00:00');
 -- check list after update
+select * from update_check_in;
 select * from hop_dong;
 
 
