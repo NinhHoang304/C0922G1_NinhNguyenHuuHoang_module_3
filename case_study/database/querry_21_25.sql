@@ -43,7 +43,7 @@ create procedure sp_them_moi_hop_dong(
 begin
 	declare existing int default null;
     
-    select ma_hop_dong
+    select h.ma_khach_hang
     into existing
     from hop_dong h
     join nhan_vien n on h.ma_nhan_vien = n.ma_nhan_vien
@@ -67,7 +67,7 @@ begin
 	end if;
 end //
 delimiter ;
-call sp_them_moi_hop_dong(14, '2020-12-08', '2020-12-08', 0, 3, 1, 3);
+call sp_them_moi_hop_dong(16, '2020-12-08', '2020-12-08', 0, 10, 1, 3);
 select * from hop_dong;
 
 -- 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong
