@@ -126,19 +126,29 @@ select func_tinh_thoi_gian_hop_dong(4) as thoi_gian_thue_lau_nhat;
 delimiter //
 create procedure sp_xoa_dich_vu_va_hd_room()
 begin
-	select h.ma_khach_hang 
+	select lk.ma_loai_khach, k.ma_khach_hang, ldv.ma_loai_dich_vu, kt.ma_kieu_thue, d.ma_dich_vu, h.ma_hop_dong
     from hop_dong h
     join dich_vu d on h.ma_dich_vu = d.ma_dich_vu
     join loai_dich_vu ldv on d.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+    join kieu_thue kt on kt.ma_kieu_thue = d.ma_kieu_thue
+    join khach_hang k on h.ma_khach_hang = k.ma_khach_hang
+    join loai_khach lk on h.ma_khach_hang = lk.ma_loai_khach 
+    join nhan_vien n on h.ma_nhan_vien = n.ma_nhan_vien
     where ldv.ten_loai_dich_vu regexp 'Room' and year(ngay_lam_hop_dong) between 2015 and 2019;
     
     set sql_safe_updates = 0;
     delete from hop_dong
 	where ma_khach_hang in ( select * from 
-    (select h.ma_khach_hang 
+    (select lk.ma_loai_khach, k.ma_khach_hang, ldv.ma_loai_dich_vu, kt.ma_kieu_thue, d.ma_dich_vu, h.ma_hop_dong
     from hop_dong h
     join dich_vu d on h.ma_dich_vu = d.ma_dich_vu
     join loai_dich_vu ldv on d.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+    join kieu_thue kt on kt.ma_kieu_thue = d.ma_kieu_thue
+    join khach_hang k on h.ma_khach_hang = k.ma_khach_hang
+    join loai_khach lk on h.ma_khach_hang = lk.ma_loai_khach 
+    join nhan_vien n on h.ma_nhan_vien = n.ma_nhan_vien
+    -- join hop_dong_chi_tiet hd on hd.ma_hop_dong = h.ma_hop_dong
+    -- join dich_vu_di_kem dvdk on hd.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
     where ldv.ten_loai_dich_vu regexp 'Room' and year(ngay_lam_hop_dong) between 2015 and 2019) abc
 	);
     set sql_safe_updates = 1;
