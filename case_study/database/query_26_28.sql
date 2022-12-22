@@ -107,15 +107,18 @@ returns int
 deterministic
 begin
 	declare result int default 0;
-	if (select ma_hop_dong from hop_dong where p_id = ma_hop_dong) then 
-    set result = datediff((select ngay_ket_thuc from hop_dong where p_id) a, 
-							(select ngay_lam_hop_dong from hop_dong where p_id) b);
-    end if;
+	select max(day(ngay_ket_thuc) - day(ngay_lam_hop_dong)) into result
+    from hop_dong h
+    join khach_hang k on k.ma_khach_hang = h.ma_khach_hang
+    where h.ma_khach_hang = p_id
+    group by h.ma_khach_hang;
+    
     return result;
 end //
 delimiter ;
 -- use function
-select *, func_tinh_thoi_gian_hop_dong(2) as total_day from hop_dong; 
+select func_tinh_thoi_gian_hop_dong(4) as thoi_gian_thue_lau_nhat;
+
 
 
 
