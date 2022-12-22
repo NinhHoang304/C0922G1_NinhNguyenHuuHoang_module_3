@@ -140,15 +140,3 @@ end //
 delimiter ;
 -- call
 call sp_xoa_dich_vu_va_hd_room();
-
-
-
-
-
-
-
-
-
-
-
-
