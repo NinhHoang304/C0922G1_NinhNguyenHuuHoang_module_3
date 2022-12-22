@@ -119,6 +119,33 @@ delimiter ;
 -- use function
 select func_tinh_thoi_gian_hop_dong(4) as thoi_gian_thue_lau_nhat;
 
+-- 28.	Tạo Stored Procedure sp_xoa_dich_vu_va_hd_room để tìm các dịch vụ được thuê bởi khách hàng với loại dịch vụ là “Room” 
+-- từ đầu năm 2015 đến hết năm 2019 để xóa thông tin của các dịch vụ đó (tức là xóa các bảng ghi trong bảng dich_vu) 
+-- và xóa những hop_dong sử dụng dịch vụ liên quan (tức là phải xóa những bản gi trong bảng hop_dong) và những bản liên quan khác.
+-- use ps with on delete cascade
+delimiter //
+create procedure sp_xoa_dich_vu_va_hd_room()
+begin
+	select h.ma_khach_hang 
+    from hop_dong h
+    join dich_vu d on h.ma_dich_vu = d.ma_dich_vu
+    join loai_dich_vu ldv on d.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+    where ldv.ten_loai_dich_vu regexp 'Room' and year(ngay_lam_hop_dong) between 2015 and 2019;
+    
+    set sql_safe_updates = 0;
+    delete from hop_dong
+	where ma_khach_hang in ( select * from 
+    (select h.ma_khach_hang 
+    from hop_dong h
+    join dich_vu d on h.ma_dich_vu = d.ma_dich_vu
+    join loai_dich_vu ldv on d.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+    where ldv.ten_loai_dich_vu regexp 'Room' and year(ngay_lam_hop_dong) between 2015 and 2019) abc
+	);
+    set sql_safe_updates = 1;
+end //
+delimiter ;
+-- call
+call sp_xoa_dich_vu_va_hd_room();
 
 
 
