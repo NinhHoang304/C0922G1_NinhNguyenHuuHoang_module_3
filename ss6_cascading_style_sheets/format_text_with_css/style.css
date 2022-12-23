@@ -1,0 +1,20 @@
+body{
+    width: 50%;
+    font-size: large;
+}
+
+p{
+    text-indent: 30px;
+}
+
+span {
+    font-weight: bold;
+}
+
+.blue {
+    color: dodgerblue;
+}
+
+.bold_blue{
+    color: mediumblue;
+}
