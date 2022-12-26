@@ -1,0 +1,46 @@
+#main {
+    width: 100%;
+    padding: 0;
+}
+#head {
+    height: 100px;
+    background-color: lightblue;
+    border: 1px solid gray;
+    margin-bottom: 1px;
+}
+#head-link {
+    height: 20px;
+    background-color: lightcoral;
+    border: 1px solid gray;
+    margin-bottom: 1px;
+}
+#left {
+    width: 19%;
+    height: 400px;
+    float: left;
+    background-color: lavender;
+    border: 1px solid gray;
+    margin-right: 5px;
+}
+#content {
+    height: 400px;
+    width: 50%;
+    float: left;
+    border: 1px solid gray;
+    margin-right: 1px;
+}
+#right {
+    height: 400px;
+    width: 30%;
+    float: right;
+    border: 1px solid gray;
+    background-color: lightgreen;
+    margin-bottom: 5px;
+}
+#footer {
+    height: 50px;
+    clear: both;
+    border: 1px solid gray;
+    background-color: lemonchiffon;
+    float: bottom;
+}
