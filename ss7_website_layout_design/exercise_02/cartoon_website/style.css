@@ -41,6 +41,13 @@ body {
     padding-right: 5px;
     font-weight: bold;
 }
+.header-link a{
+    text-decoration: none;
+    color: black;
+}
+.header-link a:hover{
+    color: #7abaff;
+}
 
 .contain {
     margin-bottom: 5px;
