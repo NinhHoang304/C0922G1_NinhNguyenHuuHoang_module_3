@@ -1,0 +1,83 @@
+/*use flexbox*/
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+body{
+    margin: 0;
+}
+/*menu*/
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu{
+    height: 50px;
+}
+.menu ul{
+    padding-left: 15px;
+}
+.menu li{
+    display: inline-block;
+    width: 80px;
+    line-height: 50px;
+    text-align: center;
+}
+.menu a{
+    color: #bfb5cb;
+    font-weight: bold;
+    display: block;
+}
+.menu a:hover{
+    background: black;
+    color: white;
+}
+/*login*/
+.login i{
+    margin: 0;
+    color: #bfb5cb;
+    top: 15px
+}
+.login a{
+    color: #bfb5cb;
+    padding-left: 10px;
+    font-size: 20px;
+    line-height: 10px;
+}
+.login a:hover{
+    color: white;
+}
+/*contain*/
+a{
+    text-decoration: none;
+    color: dodgerblue;
+}
+.header{
+    background: #35333b;
+    color: white;
+    height: 10%;
+}
+.footer{
+    background: #474b4a;
+    height: 50px;
+    color: white;
+}
+.contain{
+    height: 500px;
+}
+.content{
+    padding: 15px;
+}
+.side-bar, .ads{
+    text-align: center;
+    background: #ecf0ef;
+}
+/*Ads*/
+.ads h4{
+    border: 1px solid #bfb5cb;
+    margin: 20px;
+    height: 70px;
+    padding-top: 50px;
+    background: #dedbe0;
+}
