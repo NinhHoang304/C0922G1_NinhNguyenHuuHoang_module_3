@@ -1,8 +1,47 @@
-body{
+*{
     margin: 0;
     padding: 0;
+    font-size: small;
+}
+#navbarNavDropdown a:hover{
+    border-bottom: 2px solid black;
 }
 
-#logo{
+#logo img{
+    vertical-align: unset;
+}
 
+#animation{
+    background-color: #f2f2f2;
+    height: 35px;
+}
+
+#header-link{
+    background-color: #2f2f2f;
+    height: 25px;
+}
+#header-link a{
+    text-decoration: none;
+    color: white;
+}
+#header-link a:hover{
+    border-bottom: 1px solid white;
+}
+
+#panel img{
+    padding: 0;
+}
+#text-panel{
+    padding-top: 40px;
+    padding-left: 50px;
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    color: white;
+}
+#text-panel h1{
+    font-size: 5.5rem;
+}
+#text-panel p{
+    font-size: 1.5rem;
 }
