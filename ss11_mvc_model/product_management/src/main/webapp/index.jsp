@@ -8,6 +8,6 @@
 <body>
 <h1>Product Management</h1>
 <br/>
-<%--<a href="/product">Go To Product List</a>--%>
+<a href="/product">Go To Product List</a>
 </body>
 </html>

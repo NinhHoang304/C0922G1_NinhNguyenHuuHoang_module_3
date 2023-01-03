@@ -23,8 +23,10 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
+                showCreateForm(request, response);
                 break;
             case "edit":
+                showEditForm(request, response);
                 break;
             case "delete":
                 break;
@@ -33,6 +35,21 @@ public class ProductServlet extends HttpServlet {
             default:
                 listProduct(request, response);
                 break;
+        }
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+    }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher("view/product/create.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -57,6 +74,7 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action){
             case "create":
+                createProduct(request, response);
                 break;
             case "edit":
                 break;
@@ -64,6 +82,25 @@ public class ProductServlet extends HttpServlet {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String des = request.getParameter("description");
+        String brand = request.getParameter("brand");
+
+        Product product = new Product(id, name, price, des, brand);
+        this.productService.save(product);
+        try {
+            request.getRequestDispatcher("view/product/create.jsp").forward(request, response);
+            request.setAttribute("message", "New product was created");
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -3,11 +3,12 @@ package service.impl;
 import model.Product;
 import service.IProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductServiceImpl implements IProductService {
 
-    private static List<Product> productList;
+    private static List<Product> productList = new ArrayList<>();
 
     static {
         productList.add(new Product(1, "Iphone X", 500, "Black", "Apple"));
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void update(Product product) {
+    public void update(int id, Product product) {
         productList.add(product);
     }
 
