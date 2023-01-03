@@ -40,7 +40,20 @@ public class ProductServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String des = request.getParameter("des");
+        String brand = request.getParameter("brand");
+        Product product = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if (product == null){
+            dispatcher = request.getRequestDispatcher("Error_404.jsp")
+        }else {
+            product.setName(name);
+            product.setPrice(price);
+            product.setDescription(des);
+            product.setBrand(brand);
+        }
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
