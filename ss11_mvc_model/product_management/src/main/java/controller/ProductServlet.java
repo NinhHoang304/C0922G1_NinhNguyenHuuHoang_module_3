@@ -29,6 +29,7 @@ public class ProductServlet extends HttpServlet {
                 showEditForm(request, response);
                 break;
             case "delete":
+                showDeleteForm(request, response);
                 break;
             case "view":
                 break;
@@ -38,21 +39,26 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
+        
+    }
+
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        double price = Double.parseDouble(request.getParameter("price"));
-        String des = request.getParameter("des");
-        String brand = request.getParameter("brand");
         Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
         if (product == null){
-            dispatcher = request.getRequestDispatcher("Error_404.jsp")
+            dispatcher = request.getRequestDispatcher("view/product/error404.jsp");
         }else {
-            product.setName(name);
-            product.setPrice(price);
-            product.setDescription(des);
-            product.setBrand(brand);
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("view/product/edit.jsp");
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -90,11 +96,42 @@ public class ProductServlet extends HttpServlet {
                 createProduct(request, response);
                 break;
             case "edit":
+                updateProduct(request, response);
                 break;
             case "delete":
                 break;
             default:
                 break;
+        }
+    }
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String des = request.getParameter("description");
+        String brand = request.getParameter("brand");
+
+        Product product = this.productService.findById(id);
+        RequestDispatcher requestDispatcher;
+        if (product == null){
+            requestDispatcher = request.getRequestDispatcher("view/product/error404.jsp");
+        }else {
+            product.setName(name);
+            product.setPrice(price);
+            product.setDescription(des);
+            product.setBrand(brand);
+            this.productService.update(id, product);
+            request.setAttribute("product", product);
+            request.setAttribute("message", "Product information was updated");
+            requestDispatcher = request.getRequestDispatcher("view/product/edit.jsp");
+        }
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -23,8 +23,8 @@
 <p>
   <a href="/product">Back to product list</a>
 </p>
-<form action="" method="post">
-  <p>Product infomation</p>
+<form action="/product?action=create" method="post">
+  <p>Product information</p>
   <table class="table table-striped">
     <tbody>
       <tr>

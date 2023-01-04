@@ -38,7 +38,7 @@
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>${product.brand}</td>
-            <td><a href="/product?action=edit&id=${product.id}">Edit</a></td>
+            <td><a href="/product?action=edit&id=${product.getId()}">Edit</a></td>
             <td><a href="/product?action=delete&id=${product.id}">Delete</a></td>
         </tr>
     </c:forEach>

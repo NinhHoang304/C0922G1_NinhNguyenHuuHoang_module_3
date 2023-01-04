@@ -31,7 +31,12 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public Product findById(int id) {
-        return productList.get(id);
+        for (Product pro : productList) {
+            if (pro.getId() == id) {
+                return pro;
+            }
+        }
+        return null;
     }
 
     @Override
