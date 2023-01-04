@@ -82,5 +82,17 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void insertUser(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
+        this.userService.insertUser(new User(name, email, country));
+        request.setAttribute("message", "New user was created");
+        try {
+            request.getRequestDispatcher("view/user/create.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

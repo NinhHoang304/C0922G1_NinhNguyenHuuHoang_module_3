@@ -13,7 +13,11 @@ import java.util.List;
 
 public class UserRepositoryImpl implements IUserRepository {
 
-    private final String SELECT_ALL = "select * from users";
+    private static final String SELECT_ALL = "select * from users";
+    private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
+    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
+    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
+    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 
     @Override
     public List<User> selectAllUsers() {
@@ -23,7 +27,7 @@ public class UserRepositoryImpl implements IUserRepository {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
@@ -31,7 +35,7 @@ public class UserRepositoryImpl implements IUserRepository {
                 userList.add(new User(id, name, email, country));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return userList;
     }
@@ -42,8 +46,18 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public void insertUser(User user) {
-
+    public boolean insertUser(User user) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

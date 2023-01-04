@@ -9,7 +9,7 @@ public interface IUserService {
 
     User selectUser(int id);
 
-    void insertUser(User user);
+    boolean insertUser(User user);
 
     boolean updateUser(User user);
 
