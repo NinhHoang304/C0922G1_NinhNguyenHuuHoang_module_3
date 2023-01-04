@@ -41,7 +41,12 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void update(int id, Product product) {
-        productList.add(product);
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getId() == id){
+                productList.set(i, product);
+                return;
+            }
+        }
     }
 
     @Override

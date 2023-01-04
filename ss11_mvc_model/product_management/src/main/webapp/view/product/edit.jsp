@@ -23,13 +23,13 @@
 <p>
   <a href="/product">Back to product list</a>
 </p>
-<form action="/product?action=edit" method="post">
+<form action="" method="post">
   <p>Edit Product</p>
   <table class="table table-striped">
     <tbody>
     <tr>
       <td>Id: </td>
-      <td><input class="form-control" name="id" value="${requestScope["product"].getId()}" type="text" disabled placeholder="Name input" aria-label="default input example"></td>
+      <td><input class="form-control" name="id" value="${requestScope["product"].getId()}" type="number" disabled placeholder="Name input" aria-label="default input example"></td>
     </tr>
     <tr>
       <td>Name: </td>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
       <td>Price: </td>
-      <td><input class="form-control" name="price" type="text" value="${requestScope["product"].getPrice()}" placeholder="Price input" aria-label="default input example"></td>
+      <td><input class="form-control" name="price" type="number" value="${requestScope["product"].getPrice()}" placeholder="Price input" aria-label="default input example"></td>
     </tr>
     <tr>
       <td>Description: </td>
