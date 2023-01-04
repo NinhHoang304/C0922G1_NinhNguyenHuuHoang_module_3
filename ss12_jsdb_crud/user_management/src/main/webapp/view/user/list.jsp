@@ -23,25 +23,6 @@
 </head>
 <body>
 <h1>User List</h1>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="btn btn-primary nav-link active" aria-current="page" href="user?action=create">Create new user</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search" method="post" action="user?action=sort">
-                <button class="btn btn-outline-success" type="submit">Sort by name user</button>
-            </form>
-            <form class="d-flex" role="search" method="post" action="user?action=find">
-                <input class="form-control me-2" type="text" placeholder="Search country"
-                       name="country" id="country">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
 <table class="table table-striped">
     <tr>
         <td>ID</td>
