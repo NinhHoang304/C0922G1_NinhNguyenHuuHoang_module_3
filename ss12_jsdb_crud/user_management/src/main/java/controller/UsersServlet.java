@@ -40,7 +40,7 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) {
-        List<User> userList = this.userService.selectAllUsers();
+        List<User> userList = this.userService.callAllUser();
         request.setAttribute("user", userList);
         try {
             request.getRequestDispatcher("view/user/list.jsp").forward(request, response);
@@ -52,6 +52,9 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        this.userService.callDeleteUser(id);
+        listUser(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
@@ -142,7 +145,7 @@ public class UsersServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         User user = new User(id, name, email, country);
-        this.userService.updateUser(user);
+        this.userService.callUpdateUser(user);
         try {
             request.getRequestDispatcher("view/user/edit.jsp").forward(request, response);
         } catch (ServletException | IOException e) {

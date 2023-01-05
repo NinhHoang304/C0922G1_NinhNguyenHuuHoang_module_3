@@ -18,4 +18,10 @@ public interface IUserRepository {
     List<User> findByCountry(String country);
 
     List<User> sortByName();
+
+    List<User> callAllUser();
+
+    boolean callUpdateUser(User user);
+
+    boolean callDeleteUser(int id);
 }

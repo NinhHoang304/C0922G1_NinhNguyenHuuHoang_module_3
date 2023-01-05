@@ -4,20 +4,20 @@ import model.User;
 import repository.BaseRepository;
 import repository.IUserRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepositoryImpl implements IUserRepository {
 
     private static final String SELECT_ALL = "select * from users";
+    private static final String CALL_ALL_USER = "call display_list_user();";
     private static final String INSERT_USERS_SQL = "INSERT INTO users (name, email, country) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
+    private static final String CALL_DELETE_USER = "call delete_user(?);";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String CALL_UPDATE_USER = "call update_user(?, ?, ?, ?);";
     private static final String FIND_BY_COUNTRY = "select * from users where country = ?;";
     private static final String SORT_BY_NAME = "select * from users order by name;";
 
@@ -152,5 +152,58 @@ public class UserRepositoryImpl implements IUserRepository {
             e.printStackTrace();
         }
         return userList;
+    }
+
+    @Override
+    public List<User> callAllUser() {
+        List<User> userList = new ArrayList<>();
+        // kết nối db để lấy ra userList rồi return
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(CALL_ALL_USER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                userList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    @Override
+    public boolean callUpdateUser(User user) {
+        boolean rowUpdated;
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(CALL_UPDATE_USER);
+            callableStatement.setString(1, user.getName());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getCountry());
+            callableStatement.setInt(4, user.getId());
+
+            rowUpdated = callableStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowUpdated;
+    }
+
+    @Override
+    public boolean callDeleteUser(int id) {
+        boolean rowDeleted;
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(CALL_DELETE_USER);
+            callableStatement.setInt(1, id);
+            rowDeleted = callableStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDeleted;
     }
 }

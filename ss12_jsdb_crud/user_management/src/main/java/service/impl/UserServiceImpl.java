@@ -45,4 +45,19 @@ public class UserServiceImpl implements IUserService {
     public List<User> sortByName() {
         return this.userRepository.sortByName();
     }
+
+    @Override
+    public List<User> callAllUser() {
+        return this.userRepository.callAllUser();
+    }
+
+    @Override
+    public boolean callUpdateUser(User user) {
+        return this.userRepository.callUpdateUser(user);
+    }
+
+    @Override
+    public boolean callDeleteUser(int id) {
+        return this.userRepository.callDeleteUser(id);
+    }
 }
