@@ -18,7 +18,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User selectUser(int id) {
-        return null;
+        return this.userRepository.selectUser(id);
     }
 
     @Override
@@ -28,12 +28,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean updateUser(User user) {
-        return false;
+        return this.userRepository.updateUser(user);
     }
 
     @Override
     public boolean deleteUser(int id) {
-        return false;
+        return this.userRepository.deleteUser(id);
     }
 
     @Override

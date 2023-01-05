@@ -61,8 +61,8 @@
             <td>${user.name}</td>
             <td>${user.email}</td>
             <td>${user.country}</td>
-            <td><a href="user?action=edit&id=${user.getId()}">Edit</a></td>
-            <td><a href="user?action=delete&id=${user.getId()}">Delete</a></td>
+            <td><a href="users?action=edit&id=${user.getId()}">Edit</a></td>
+            <td><a href="users?action=delete&id=${user.getId()}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

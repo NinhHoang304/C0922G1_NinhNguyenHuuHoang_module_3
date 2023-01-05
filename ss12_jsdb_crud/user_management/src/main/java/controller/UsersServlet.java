@@ -55,6 +55,15 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        User user = this.userService.selectUser(id);
+        request.setAttribute("user", user);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/user/edit.jsp");
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) {
@@ -94,17 +103,13 @@ public class UsersServlet extends HttpServlet {
         if (userList == null){
             try {
                 request.getRequestDispatcher("view/user/error-404.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 throw new RuntimeException(e);
             }
         }else {
             try {
                 request.getRequestDispatcher("view/user/sort.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -118,24 +123,31 @@ public class UsersServlet extends HttpServlet {
         if (userList == null){
             try {
                 request.getRequestDispatcher("view/user/error-404.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 throw new RuntimeException(e);
             }
         }else {
             try {
                 request.getRequestDispatcher("view/user/search.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String country = request.getParameter("country");
 
+        User user = new User(id, name, email, country);
+        this.userService.updateUser(user);
+        try {
+            request.getRequestDispatcher("view/user/edit.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void insertUser(HttpServletRequest request, HttpServletResponse response) {

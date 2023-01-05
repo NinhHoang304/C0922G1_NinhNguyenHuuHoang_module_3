@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Create new product</h1>
+<h1>Create new user</h1>
 <p>
     <c:if test='${requestScope["message"] != null}'>
         <span>${requestScope["message"]}</span>
