@@ -58,7 +58,11 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) {
-
+        try {
+            request.getRequestDispatcher("view/user/create.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -74,6 +78,59 @@ public class UsersServlet extends HttpServlet {
             case "edit":
                 updateUser(request, response);
                 break;
+            case "find":
+                findByCountry(request, response);
+                break;
+            case "sort":
+                sortByName(request, response);
+                break;
+        }
+    }
+
+    private void sortByName(HttpServletRequest request, HttpServletResponse response) {
+        List<User> userList = this.userService.sortByName();
+        request.setAttribute("users", userList);
+
+        if (userList == null){
+            try {
+                request.getRequestDispatcher("view/user/error-404.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            try {
+                request.getRequestDispatcher("view/user/sort.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void findByCountry(HttpServletRequest request, HttpServletResponse response) {
+        String country = request.getParameter("country");
+        List<User> userList = this.userService.findByCountry(country);
+        request.setAttribute("users", userList);
+
+        if (userList == null){
+            try {
+                request.getRequestDispatcher("view/user/error-404.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            try {
+                request.getRequestDispatcher("view/user/search.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -89,9 +146,7 @@ public class UsersServlet extends HttpServlet {
         request.setAttribute("message", "New user was created");
         try {
             request.getRequestDispatcher("view/user/create.jsp").forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             throw new RuntimeException(e);
         }
     }

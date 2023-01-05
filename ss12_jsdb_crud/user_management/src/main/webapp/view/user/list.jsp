@@ -31,14 +31,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="user?action=create">Create</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="user?action=sort">Sort</a>
+                    <a class="nav-link" href="/users?action=create">Create</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" role="search" method="post" action="/users?action=sort">
+                <button class="btn btn-outline-success" type="submit">Sort by name user</button>
+            </form>
+            <form class="d-flex" role="search" method="post" action="/users?action=find">
+                <input class="form-control me-2" type="text" placeholder="Search country"
+                       name="country" id="country">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean insertUser(User user) {
-        return  this.userRepository.insertUser(user);
+        return this.userRepository.insertUser(user);
     }
 
     @Override
@@ -34,5 +34,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean deleteUser(int id) {
         return false;
+    }
+
+    @Override
+    public List<User> findByCountry(String country) {
+        return this.userRepository.findByCountry(country);
+    }
+
+    @Override
+    public List<User> sortByName() {
+        return this.userRepository.sortByName();
     }
 }

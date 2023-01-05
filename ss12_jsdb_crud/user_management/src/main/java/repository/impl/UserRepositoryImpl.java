@@ -18,6 +18,8 @@ public class UserRepositoryImpl implements IUserRepository {
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String FIND_BY_COUNTRY = "select * from users where country = ?;";
+    private static final String SORT_BY_NAME = "select * from users order by name;";
 
     @Override
     public List<User> selectAllUsers() {
@@ -68,5 +70,49 @@ public class UserRepositoryImpl implements IUserRepository {
     @Override
     public boolean deleteUser(int id) {
         return false;
+    }
+
+    @Override
+    public List<User> findByCountry(String country) {
+        List<User> userList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_COUNTRY);
+            preparedStatement.setString(1, country);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                userList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userList;
+    }
+
+    @Override
+    public List<User> sortByName() {
+        List<User> userList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_NAME);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                userList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 }
