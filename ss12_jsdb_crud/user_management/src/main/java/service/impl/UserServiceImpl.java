@@ -60,4 +60,9 @@ public class UserServiceImpl implements IUserService {
     public boolean callDeleteUser(int id) {
         return this.userRepository.callDeleteUser(id);
     }
+
+    @Override
+    public void addUserTransaction(User user, int[] permission) {
+        this.userRepository.addUserTransaction(user, permission);
+    }
 }

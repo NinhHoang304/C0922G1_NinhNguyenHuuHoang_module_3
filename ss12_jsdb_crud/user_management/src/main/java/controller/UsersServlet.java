@@ -33,10 +33,21 @@ public class UsersServlet extends HttpServlet {
             case "delete":
                 deleteUser(request, response);
                 break;
+            case "permission":
+                addUserPermision(request, response);
+                break;
             default:
                 listUser(request, response);
                 break;
         }
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+
+        int[] permission = {1, 2, 4};
+
+        this.userService.addUserTransaction(user, permission);
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) {

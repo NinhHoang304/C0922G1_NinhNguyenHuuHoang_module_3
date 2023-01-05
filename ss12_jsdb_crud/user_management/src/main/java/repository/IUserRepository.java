@@ -24,4 +24,6 @@ public interface IUserRepository {
     boolean callUpdateUser(User user);
 
     boolean callDeleteUser(int id);
+
+    void addUserTransaction(User user, int[] permission);
 }
