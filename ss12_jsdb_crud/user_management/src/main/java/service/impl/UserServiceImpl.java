@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean insertUser(User user) {
-        return this.userRepository.insertUser(user);
+        return  this.userRepository.insertUser(user);
     }
 
     @Override
