@@ -59,7 +59,6 @@ permision_id int,
 user_id int
 
 );
-
 insert into Permision(id, name) values(1, 'add');
 
 insert into Permision(id, name) values(2, 'edit');
