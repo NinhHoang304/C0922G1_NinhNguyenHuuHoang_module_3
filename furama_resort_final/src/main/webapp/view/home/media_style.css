@@ -1,0 +1,73 @@
+@media only screen and (max-width: 768px) {
+    /*break point logo*/
+    #logo{
+        margin-left: 46%;
+    }
+    #logo img {
+        width: 73px;
+        height: 115px;
+    }
+    #address{
+        display: none;
+    }
+    #contact{
+        display: none;
+    }
+    /*break point nav bar*/
+    #content-body{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #navbarSupportedContent{
+        width: 100%;
+    }
+    #content-body a{
+        text-align: center;
+        font-size: 20px;
+    }
+    .navbar-brand{
+        margin-left: 45.5%;
+        font-size: 20px;
+    }
+    /*roomType*/
+    #content-roomType{
+        width: 70%;
+        margin: 0 auto;
+    }
+    #content-roomType p{
+        font-size: 20px;
+        text-indent: 20px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #logo img {
+        width: 73px;
+        height: 115px;
+    }
+    /*break point nav bar*/
+    #content-body{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #navbarSupportedContent{
+        width: 100%;
+    }
+    #content-body a{
+        text-align: center;
+        font-size: 20px;
+    }
+    .navbar-brand{
+        margin-left: 45.5%;
+        font-size: 20px;
+    }
+    /*roomType*/
+    #content-roomType{
+        width: 70%;
+        margin: 0 auto;
+    }
+    #content-roomType p{
+        font-size: 15px;
+        text-indent: 20px;
+    }
+}
