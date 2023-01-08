@@ -47,30 +47,30 @@
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach items='${customerList}' var="customer">
+            <c:forEach items='${customerList}' var="employee">
                 <tr>
-                    <td>${customer.id}</td>
-                    <td>${customer.customerTypeId}</td>
-                    <td>${customer.name}</td>
-                    <td>${customer.dayOfBirth}</td>
-                    <c:if test="${customer.gender}">
+                    <td>${employee.id}</td>
+                    <td>${employee.customerTypeId}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.dayOfBirth}</td>
+                    <c:if test="${employee.gender}">
                         <td>Nam</td>
                     </c:if>
-                    <c:if test="${!customer.gender}">
+                    <c:if test="${!employee.gender}">
                         <td>Nữ</td>
                     </c:if>
-                    <td>${customer.idCard}</td>
-                    <td>${customer.phoneNumber}</td>
-                    <td>${customer.email}</td>
-                    <td>${customer.address}</td>
+                    <td>${employee.idCard}</td>
+                    <td>${employee.phoneNumber}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.address}</td>
                     <td>
-                        <a href="/customer?action=edit&id=${customer.id}">
+                        <a href="/customer?action=edit&id=${employee.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                             <%--Modal Delete--%>
-                        <button onclick="infoDelete('${customer.id}','${customer.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                        <button onclick="infoDelete('${employee.id}','${employee.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
                         </button>

@@ -18,5 +18,5 @@ td, th{
 }
 
 th{
-    font-size: smaller;
+    font-size: smaller !important;
 }
