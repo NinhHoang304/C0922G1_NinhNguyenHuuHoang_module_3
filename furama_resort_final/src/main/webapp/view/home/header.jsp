@@ -13,7 +13,7 @@
 <body>
 <div class="row" id="header">
     <div id="content-header" class="d-flex">
-        <div id="logo"><img src="../view/home/img/logo@2x.png" alt="logo"></div>
+        <div id="logo"><a href="/furama"><img src="../view/home/img/logo@2x.png" alt="logo"></a></div>
         <div id="address">
             <p><i class="fa-solid fa-location-dot"></i> 103 – 105 Đường Võ Nguyên Giáp, Phường Khuê Mỹ, Quận Ngũ
                 hành Sơn, Tp. Đà Nẵng, Việt Nam</p>

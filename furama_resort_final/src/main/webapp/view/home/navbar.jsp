@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -24,19 +25,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Nhân Viên</a>
+                            <a class="nav-link" href="/employee">Nhân Viên</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Khách Hàng</a>
+                            <a class="nav-link" href="/customer">Khách Hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dịch Vụ</a>
+                            <a class="nav-link" href="/facility">Dịch Vụ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Hợp Đồng</a>
+                            <a class="nav-link" href="/contract">Hợp Đồng</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" style="margin: 0">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit" style="color: white">Search</button>
                     </form>
