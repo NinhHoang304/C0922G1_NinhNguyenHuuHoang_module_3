@@ -42,6 +42,29 @@ public class FacilityServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null){
+            action = "";
+        }
+        switch (action){
+            case "create":
+                break;
+            case "edit":
+                break;
+            case "delete":
+                deleteFacility(request, response);
+                break;
+        }
+    }
 
+    private void deleteFacility(HttpServletRequest request, HttpServletResponse response) {
+        int deleteId = Integer.parseInt(request.getParameter("deleteId"));
+        boolean check = this.facilityService.deleteFacility(deleteId);
+        String mess = "Xoá thành công";
+        if (!check){
+            mess = "Xoá không thành công";
+        }
+        request.setAttribute("mess", mess);
+        listFacility(request, response);
     }
 }

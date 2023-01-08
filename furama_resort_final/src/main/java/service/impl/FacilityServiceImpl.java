@@ -32,6 +32,6 @@ public class FacilityServiceImpl implements IFacilityService {
 
     @Override
     public boolean deleteFacility(int id) {
-        return false;
+        return this.facilityRepository.deleteFacility(id);
     }
 }

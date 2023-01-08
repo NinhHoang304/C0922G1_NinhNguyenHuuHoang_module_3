@@ -17,8 +17,6 @@ create table division(
   name varchar(45)
 );
 
-
-
 create table role(
   role_id int primary key, 
   role_name varchar(45)
@@ -33,8 +31,8 @@ create table user_role (
 role_id int,
 username varchar(255),
 primary key(role_id,username),
-foreign key(role_id) references role(role_id),
-foreign key(username) references user(username)
+foreign key(role_id) references role(role_id) on delete cascade,
+foreign key(username) references user(username) on delete cascade
 );
 
 create table employee (
@@ -50,10 +48,10 @@ create table employee (
   education_degree_id int, 
   division_id int, 
   username varchar(255), 
-  foreign key(position_id) references position (id), 
-  foreign key(education_degree_id) references education_degree (id), 
-  foreign key(division_id) references division(id),
-  foreign key(username) references user(username)
+  foreign key(position_id) references position (id) on delete cascade, 
+  foreign key(education_degree_id) references education_degree (id) on delete cascade, 
+  foreign key(division_id) references division(id) on delete cascade,
+  foreign key(username) references user(username) on delete cascade
 );
 
 
@@ -72,7 +70,7 @@ create table customer(
   phone_number varchar(45), 
   email varchar(45), 
   address varchar(45), 
-  foreign key(customer_type_id) references customer_type(id)
+  foreign key(customer_type_id) references customer_type(id) on delete cascade
 );
 
 create table attach_facility (
@@ -108,8 +106,8 @@ create table facility (
   pool_area double, 
   number_of_floors int, 
   facility_free text, 
-  foreign key (facility_type_id) references facility_type(id), 
-  foreign key (rent_type_id) references rent_type(id)
+  foreign key (facility_type_id) references facility_type(id) on delete cascade, 
+  foreign key (rent_type_id) references rent_type(id) on delete cascade
 );
 
 create table contract(
@@ -120,9 +118,9 @@ create table contract(
   employee_id int, 
   customer_id int, 
   facility_id int, 
-  foreign key(employee_id) references employee(id), 
-  foreign key(customer_id) references customer(id), 
-  foreign key(facility_id) references facility(id)
+  foreign key(employee_id) references employee(id) on delete cascade, 
+  foreign key(customer_id) references customer(id) on delete cascade, 
+  foreign key(facility_id) references facility(id) on delete cascade
 );
 
 create table contract_detail (
@@ -130,6 +128,6 @@ create table contract_detail (
   contract_id int, 
   attach_facility_id int, 
   quantity int, 
-  foreign key(attach_facility_id) references attach_facility(id), 
-  foreign key(contract_id) references contract(id)
+  foreign key(attach_facility_id) references attach_facility(id) on delete cascade, 
+  foreign key(contract_id) references contract(id) on delete cascade
 );

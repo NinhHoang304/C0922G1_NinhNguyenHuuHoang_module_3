@@ -25,8 +25,9 @@
     <div id="add">
         <div id="add-content">
             <button class="btn btn-success">
-                <a href="">Create</a>
+                <a href="/facility?action=create">Create</a>
             </button>
+            <span style="color: #146c43; float: right">${mess}</span>
         </div>
     </div>
     <div id="list">
@@ -63,18 +64,52 @@
                     <td>${facility.poolArea}</td>
                     <td>${facility.numberOfFloors}</td>
                     <td>${facility.facilityFree}</td>
-                    <td><a href="/facility?action=edit&id=${facility.id}">
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                    </a></td>
-                    <td><a href="/facility?action=delete&id=${facility.id}">
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </a></td>
+                    <td>
+                        <a href="/facility?action=edit&id=${facility.id}">
+                            <button class="btn btn-sm btn-primary">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <%--Modal Delete--%>
+                        <button onclick="infoDelete('${facility.id}','${facility.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
+<!-- Modal Delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Facility</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/facility?action=delete" method="post">
+                <div class="modal-body">
+                    <input hidden type="text" id="deleteId" name="deleteId">
+                    <span>Do you want to delete this facility </span>
+                    <span style="color: red" id="deleteName"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function infoDelete(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+</script>
 </body>
 <script src="../view/home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>

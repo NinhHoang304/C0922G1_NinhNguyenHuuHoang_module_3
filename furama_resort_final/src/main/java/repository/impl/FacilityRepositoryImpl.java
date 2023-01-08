@@ -14,6 +14,7 @@ import java.util.List;
 public class FacilityRepositoryImpl implements IFacilityRepository {
 
     private static final String SELECT_ALL_FACILITY = "select * from facility;";
+    private static final String DELETE_FACILITY = "delete from facility where id = ?;";
     @Override
     public List<Facility> selectAllFacility() {
         // tạo array list lưu giữ liệu trả về từ database
@@ -23,7 +24,7 @@ public class FacilityRepositoryImpl implements IFacilityRepository {
         try {
             // PreparedStatement dùng để thực hiện câu truy vấn SQL
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_FACILITY);
-            // ResultSet duy trì một con trỏ, trỏ đến một hàng của một bảng. Ban đầu, con trỏ trỏ đến hàng đầu tiên.
+            // ResultSet duy trì một con trỏ, trỏ đến một hàng của một bảng. Ban đầu, con trỏ, trỏ đến hàng đầu tiên.
             // executeQuery() thực hiện truy vấn chọn. Nó trả về một thể hiện của ResultSet.
             ResultSet resultSet = preparedStatement.executeQuery();
             // resultSet.next() dùng để di chuyển con trỏ xuống dòng và lấy giữ liệu bằng resultSet.get
@@ -67,6 +68,15 @@ public class FacilityRepositoryImpl implements IFacilityRepository {
 
     @Override
     public boolean deleteFacility(int id) {
-        return false;
+        boolean rowDeleted;
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_FACILITY);
+            preparedStatement.setInt(1, id);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDeleted;
     }
 }
