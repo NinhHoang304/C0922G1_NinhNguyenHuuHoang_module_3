@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 8/1/2023
-  Time: 6:01 PM
+  Date: 9/1/2023
+  Time: 3:05 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,12 +20,12 @@
 <c:import url="../view/home/navbar.jsp"></c:import>
 <div style="margin-top: 5px">
     <div id="title">
-        <h3>Facility Management</h3>
+        <h3>Customer Management</h3>
     </div>
     <div id="add">
         <div id="add-content">
             <button class="btn btn-success">
-                <a href="/facility?action=create">Create new facility</a>
+                <a href="/facility?action=create">Create new customer</a>
             </button>
             <span style="color: #146c43; float: right">${mess}</span>
         </div>
@@ -35,42 +35,41 @@
             <thead class="border">
             <tr>
                 <th>ID</th>
+                <th>Customer Type Id</th>
                 <th>Name</th>
-                <th>Area</th>
-                <th>Cost</th>
-                <th>Max People</th>
-                <th>Rent Type Id</th>
-                <th>Facility Type Id</th>
-                <th>Standard Room</th>
-                <th>Description</th>
-                <th>Pool Area</th>
-                <th>Number Of Floors</th>
-                <th>Facility Free</th>
+                <th>Day Of Birth</th>
+                <th>Gender</th>
+                <th>Id Card</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Address</th>
                 <th colspan="2">Action</th>
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach items='${facilityList}' var="customer">
+            <c:forEach items='${customerList}' var="customer">
                 <tr>
                     <td>${customer.id}</td>
+                    <td>${customer.customerTypeId}</td>
                     <td>${customer.name}</td>
-                    <td>${customer.area}</td>
-                    <td>${customer.cost}</td>
-                    <td>${customer.maxPeople}</td>
-                    <td>${customer.rentTypeId}</td>
-                    <td>${customer.facilityTypeId}</td>
-                    <td>${customer.standardRoom}</td>
-                    <td>${customer.descriptionOtherConvenience}</td>
-                    <td>${customer.poolArea}</td>
-                    <td>${customer.numberOfFloors}</td>
-                    <td>${customer.facilityFree}</td>
+                    <td>${customer.dayOfBirth}</td>
+                    <c:if test="${customer.gender}">
+                        <td>Nam</td>
+                    </c:if>
+                    <c:if test="${!customer.gender}">
+                        <td>Nữ</td>
+                    </c:if>
+                    <td>${customer.idCard}</td>
+                    <td>${customer.phoneNumber}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.address}</td>
                     <td>
-                        <a href="/facility?action=edit&id=${customer.id}">
+                        <a href="/customer?action=edit&id=${customer.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
-                        <%--Modal Delete--%>
+                            <%--Modal Delete--%>
                         <button onclick="infoDelete('${customer.id}','${customer.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
@@ -87,13 +86,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Facility</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/facility?action=delete" method="post">
+            <form action="/customer?action=delete" method="post">
                 <div class="modal-body">
                     <input hidden type="text" id="deleteId" name="deleteId">
-                    <span>Do you want to delete this facility </span>
+                    <span>Do you want to delete this customer </span>
                     <span style="color: red" id="deleteName"></span>
                 </div>
                 <div class="modal-footer">

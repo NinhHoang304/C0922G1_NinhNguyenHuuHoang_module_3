@@ -8,8 +8,8 @@ import service.IFacilityService;
 import java.util.List;
 
 public class FacilityServiceImpl implements IFacilityService {
-    private final IFacilityRepository facilityRepository = new FacilityRepositoryImpl();
 
+    private final IFacilityRepository facilityRepository = new FacilityRepositoryImpl();
     @Override
     public List<Facility> selectAllFacility() {
         return this.facilityRepository.selectAllFacility();

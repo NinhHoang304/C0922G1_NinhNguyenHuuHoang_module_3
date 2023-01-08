@@ -1,9 +1,8 @@
 package controller;
 
-import model.Facility;
-import service.IFacilityService;
-import service.impl.FacilityServiceImpl;
-
+import model.Customer;
+import service.ICustomerService;
+import service.impl.CustomerServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,10 +10,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "FacilityServlet", value = "/facility")
-public class FacilityServlet extends HttpServlet {
-    private final IFacilityService facilityService = new FacilityServiceImpl();
-
+@WebServlet(name = "CustomerServlet", value = "/customer")
+public class CustomerServlet extends HttpServlet {
+    private final ICustomerService customerService = new CustomerServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -23,18 +21,15 @@ public class FacilityServlet extends HttpServlet {
         }
         switch (action){
             default:
-                listFacility(request, response);
+                listCustomer(request, response);
         }
     }
 
-    private void listFacility(HttpServletRequest request, HttpServletResponse response) {
-        // tạo list nhận giữ liệu đổ về từ repository thông qua facility service
-        List<Facility> facilityList = this.facilityService.selectAllFacility();
-        // đóng gói giữ liệu bằng phương thức request.setAttribute
-        request.setAttribute("facilityList", facilityList);
+    private void listCustomer(HttpServletRequest request, HttpServletResponse response) {
+        List<Customer> customerList = this.customerService.selectAllCustomer();
+        request.setAttribute("customerList", customerList);
         try {
-            // request.getRequestDispatcher chuyển trang, forward gửi giữ liệu qua trang vừa chuyển đến
-            request.getRequestDispatcher("view/facility.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -52,19 +47,19 @@ public class FacilityServlet extends HttpServlet {
             case "edit":
                 break;
             case "delete":
-                deleteFacility(request, response);
+                deleteCustomer(request, response);
                 break;
         }
     }
 
-    private void deleteFacility(HttpServletRequest request, HttpServletResponse response) {
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int deleteId = Integer.parseInt(request.getParameter("deleteId"));
-        boolean check = this.facilityService.deleteFacility(deleteId);
+        boolean check = this.customerService.deleteCustomer(deleteId);
         String mess = "Xoá thành công";
         if (!check){
             mess = "Xoá không thành công";
         }
         request.setAttribute("mess", mess);
-        listFacility(request, response);
+        listCustomer(request, response);
     }
 }
