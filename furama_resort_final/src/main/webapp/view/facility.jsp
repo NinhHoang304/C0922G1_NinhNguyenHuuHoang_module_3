@@ -14,11 +14,14 @@
     <link rel="stylesheet" href="../view/home/furama_style.css">
     <link rel="stylesheet" href="../view/home/media_style.css">
     <link rel="stylesheet" href="../view/facility_style.css">
+<%--    phân trang--%>
+    <link rel="stylesheet" href="../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../datatables/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin-top: 5px">
+<div style="margin: 5px 0 20px 0;">
     <div id="title">
         <h3>Facility Management</h3>
     </div>
@@ -31,47 +34,48 @@
         </div>
     </div>
     <div id="list">
-        <table class="table table-hover border" style="margin: 0; padding: 0">
-            <thead class="border">
+        <table id="tablePaging" class="table table-striped table-hover table-bordered" style="width: 100%;">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Area</th>
                 <th>Cost</th>
                 <th>Max People</th>
-                <th>Rent Type Id</th>
-                <th>Facility Type Id</th>
+<%--                <th>Rent Type Id</th>--%>
+<%--                <th>Facility Type Id</th>--%>
                 <th>Standard Room</th>
                 <th>Description</th>
                 <th>Pool Area</th>
                 <th>Number Of Floors</th>
                 <th>Facility Free</th>
-                <th colspan="2">Action</th>
+                <th>Action</th>
+                <th>Action</th>
             </tr>
             </thead>
-            <tbody class="border">
-            <c:forEach items='${facilityList}' var="employee">
+            <tbody>
+            <c:forEach items='${facilityList}' var="contractList">
                 <tr>
-                    <td>${employee.id}</td>
-                    <td>${employee.name}</td>
-                    <td>${employee.area}</td>
-                    <td>${employee.cost}</td>
-                    <td>${employee.maxPeople}</td>
-                    <td>${employee.rentTypeId}</td>
-                    <td>${employee.facilityTypeId}</td>
-                    <td>${employee.standardRoom}</td>
-                    <td>${employee.descriptionOtherConvenience}</td>
-                    <td>${employee.poolArea}</td>
-                    <td>${employee.numberOfFloors}</td>
-                    <td>${employee.facilityFree}</td>
+                    <td>${contractList.id}</td>
+                    <td>${contractList.name}</td>
+                    <td>${contractList.area}</td>
+                    <td>${contractList.cost}</td>
+                    <td>${contractList.maxPeople}</td>
+<%--                    <td>${employee.rentTypeId}</td>--%>
+<%--                    <td>${employee.facilityTypeId}</td>--%>
+                    <td>${contractList.standardRoom}</td>
+                    <td>${contractList.descriptionOtherConvenience}</td>
+                    <td>${contractList.poolArea}</td>
+                    <td>${contractList.numberOfFloors}</td>
+                    <td>${contractList.facilityFree}</td>
                     <td>
-                        <a href="/facility?action=edit&id=${employee.id}">
+                        <a href="/facility?action=edit&id=${contractList.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                         <%--Modal Delete--%>
-                        <button onclick="infoDelete('${employee.id}','${employee.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                        <button onclick="infoDelete('${contractList.id}','${contractList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
                         </button>
@@ -82,6 +86,7 @@
         </table>
     </div>
 </div>
+<c:import url="../view/home/footer.jsp"></c:import>
 <!-- Modal Delete -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -113,4 +118,17 @@
 </body>
 <script src="../view/home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>
+<%--Phân trang--%>
+<script src="../jquery/jquery-3.5.1.min.js"></script>
+<script src="../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $('#tablePaging').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        })
+    });
+</script>
 </html>

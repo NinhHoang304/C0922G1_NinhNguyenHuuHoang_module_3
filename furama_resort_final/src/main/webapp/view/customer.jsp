@@ -14,11 +14,14 @@
     <link rel="stylesheet" href="../view/home/furama_style.css">
     <link rel="stylesheet" href="../view/home/media_style.css">
     <link rel="stylesheet" href="../view/facility_style.css">
+    <%--    phân trang--%>
+    <link rel="stylesheet" href="../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../datatables/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin-top: 5px">
+<div style="margin: 5px 0 20px 0;">
     <div id="title">
         <h3>Customer Management</h3>
     </div>
@@ -31,11 +34,11 @@
         </div>
     </div>
     <div id="list">
-        <table class="table table-hover border" style="margin: 0; padding: 0">
+        <table id="tablePaging" class="table table-striped table-hover table-bordered" style="width: 100%;">
             <thead class="border">
             <tr>
                 <th>ID</th>
-                <th>Customer Type Id</th>
+<%--                <th>Customer Type Id</th>--%>
                 <th>Name</th>
                 <th>Day Of Birth</th>
                 <th>Gender</th>
@@ -43,34 +46,35 @@
                 <th>Phone Number</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th colspan="2">Action</th>
+                <th>Action</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach items='${customerList}' var="employee">
+            <c:forEach items='${customerList}' var="contractList">
                 <tr>
-                    <td>${employee.id}</td>
-                    <td>${employee.customerTypeId}</td>
-                    <td>${employee.name}</td>
-                    <td>${employee.dayOfBirth}</td>
-                    <c:if test="${employee.gender}">
+                    <td>${contractList.id}</td>
+<%--                    <td>${employee.customerTypeId}</td>--%>
+                    <td>${contractList.name}</td>
+                    <td>${contractList.dayOfBirth}</td>
+                    <c:if test="${contractList.gender}">
                         <td>Nam</td>
                     </c:if>
-                    <c:if test="${!employee.gender}">
+                    <c:if test="${!contractList.gender}">
                         <td>Nữ</td>
                     </c:if>
-                    <td>${employee.idCard}</td>
-                    <td>${employee.phoneNumber}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.address}</td>
+                    <td>${contractList.idCard}</td>
+                    <td>${contractList.phoneNumber}</td>
+                    <td>${contractList.email}</td>
+                    <td>${contractList.address}</td>
                     <td>
-                        <a href="/customer?action=edit&id=${employee.id}">
+                        <a href="/customer?action=edit&id=${contractList.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                             <%--Modal Delete--%>
-                        <button onclick="infoDelete('${employee.id}','${employee.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                        <button onclick="infoDelete('${contractList.id}','${contractList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
                         </button>
@@ -81,6 +85,7 @@
         </table>
     </div>
 </div>
+<c:import url="../view/home/footer.jsp"></c:import>
 <!-- Modal Delete -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -112,4 +117,17 @@
 </body>
 <script src="../view/home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>
+<%--Phân trang--%>
+<script src="../jquery/jquery-3.5.1.min.js"></script>
+<script src="../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $('#tablePaging').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        })
+    });
+</script>
 </html>
