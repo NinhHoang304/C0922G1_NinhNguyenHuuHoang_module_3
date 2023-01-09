@@ -21,7 +21,7 @@
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin: 5px 0 20px 0;">
+<div style="margin: 5px 0 80px 0;">
     <div id="title">
         <h3>Contract Management</h3>
     </div>
@@ -44,8 +44,8 @@
                 <th>Employee Id</th>
                 <th>Customer Id</th>
                 <th>Facility Id</th>
-                <th>Attach Facility</th>
-                <th>Action</th>
+                <th>Add New Attach</th>
+                <th>Attach Facility List</th>
             </tr>
             </thead>
             <tbody>

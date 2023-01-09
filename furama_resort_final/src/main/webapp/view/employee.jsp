@@ -21,7 +21,7 @@
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin: 5px 0 20px 0;">
+<div style="margin: 5px 0 80px 0;">
     <div id="title">
         <h3>Employee Management</h3>
     </div>
