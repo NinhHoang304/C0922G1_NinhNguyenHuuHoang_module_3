@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+/*body-content-crud*/
+#body-content-crud{
+    height: 700px;
+}
 /*create*/
 #add-content {
     margin: 5px;

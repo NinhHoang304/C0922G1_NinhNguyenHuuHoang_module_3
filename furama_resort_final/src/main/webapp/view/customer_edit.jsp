@@ -21,7 +21,7 @@
 <body>
 <c:import url="home/header.jsp"></c:import>
 <c:import url="home/navbar.jsp"></c:import>
-<div style="margin: 20px 0 80px 0;">
+<div style="width: 96%;height: 500px; margin: 0 auto">
     <div id="title">
         <h3>Edit new customer</h3>
     </div>

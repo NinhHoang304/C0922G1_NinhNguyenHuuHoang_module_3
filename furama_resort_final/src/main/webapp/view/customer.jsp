@@ -60,7 +60,7 @@
         </nav>
     </div>
 </div>
-<div style="width: 96%; margin: 0 auto">
+<div style="width: 96%;height: 500px; margin: 0 auto">
     <div id="title">
         <h3>Customer Management</h3>
     </div>
