@@ -33,7 +33,7 @@ begin
     update users set name = p_name, email = p_email, country = p_country where id = p_id;
 end //
 delimiter ;
-call update_user(3, "Quan", "Quandis", "My");
+
 
 -- ps delete user
 delimiter //

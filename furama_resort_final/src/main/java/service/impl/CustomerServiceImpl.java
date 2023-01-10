@@ -1,6 +1,7 @@
 package service.impl;
 
 import model.Customer;
+import model.CustomerType;
 import repository.ICustomerRepository;
 import repository.impl.CustomerRepositoryImpl;
 import service.ICustomerService;
@@ -21,7 +22,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public boolean insertCustomer(Customer customer) {
-        return false;
+        return this.customerRepository.insertCustomer(customer);
     }
 
     @Override
@@ -32,5 +33,10 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public boolean deleteCustomer(int id) {
         return this.customerRepository.deleteCustomer(id);
+    }
+
+    @Override
+    public List<CustomerType> selectAllCustomerType() {
+        return this.customerRepository.selectAllCustomerType();
     }
 }

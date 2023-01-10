@@ -1,6 +1,7 @@
 package controller;
 
 import model.Customer;
+import model.CustomerType;
 import service.ICustomerService;
 import service.impl.CustomerServiceImpl;
 
@@ -31,6 +32,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        List<CustomerType> customerTypeList = this.customerService.selectAllCustomerType();
+        request.setAttribute("customerTypeList", customerTypeList);
         try {
             request.getRequestDispatcher("view/customer_create.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
@@ -55,7 +58,8 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action){
-            case "save":
+            case "insert":
+                insertCustomer(request, response);
                 break;
             case "update":
                 break;
@@ -63,6 +67,25 @@ public class CustomerServlet extends HttpServlet {
                 deleteCustomer(request, response);
                 break;
         }
+    }
+
+    private void insertCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int customerTypeId = Integer.parseInt(request.getParameter("customerType"));
+        String name = request.getParameter("name");
+        String dateOfBirth = request.getParameter("dayOfBirth");
+        boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+        String idCard = request.getParameter("idCard");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        boolean check = this.customerService.insertCustomer(new Customer(customerTypeId,
+                name, dateOfBirth, gender, idCard, phoneNumber, email, address));
+        String mess ="Thêm mới thành công";
+        if (!check){
+            mess= "Thêm mới không thành công";
+        }
+        request.setAttribute("mess", mess);
+        showCreateForm(request, response);
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {

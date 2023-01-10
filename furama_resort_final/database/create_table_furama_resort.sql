@@ -36,7 +36,7 @@ foreign key(username) references user(username) on delete cascade
 );
 
 create table employee (
-  id int primary key, 
+  id int primary key auto_increment, 
   name varchar(45), 
   day_of_birth date, 
   id_card varchar(45), 
@@ -61,7 +61,7 @@ create table customer_type(
 );
 
 create table customer(
-  id int primary key, 
+  id int primary key auto_increment, 
   customer_type_id int, 
   name varchar(45), 
   day_of_birth date, 
@@ -94,7 +94,7 @@ create table facility_type(
 );
 
 create table facility (
-  id int primary key, 
+  id int primary key auto_increment, 
   name varchar(45), 
   area int, 
   cost double, 
@@ -111,7 +111,7 @@ create table facility (
 );
 
 create table contract(
-  id int primary key, 
+  id int primary key auto_increment, 
   start_date datetime, 
   end_date datetime, 
   deposit double, 
