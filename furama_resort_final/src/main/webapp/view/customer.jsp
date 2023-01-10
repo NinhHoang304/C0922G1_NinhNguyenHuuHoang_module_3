@@ -20,7 +20,46 @@
 </head>
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
-<c:import url="../view/home/navbar.jsp"></c:import>
+<div class="row" id="header-link">
+    <div id="content-body">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/furama">Giới Thiệu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employee">Nhân Viên</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/customer">Khách Hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/facility">Dịch Vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contract">Hợp Đồng</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" style="margin: 0" role="search" method="get">
+                        <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                        <select class="form-select" aria-label="Default select example" name="customerType">
+                            <option value="">Choose customer type</option>
+                            <c:forEach var="customerType" items="${customerTypeList}">
+                                <option value="${customerType.name}">${customerType.name}</option>
+                            </c:forEach>
+                        </select>
+                        <button class="btn btn-outline-success" type="submit" name="action" value="search" style="color: white; margin-left: 5px">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 <div style="width: 96%; margin: 0 auto">
     <div id="title">
         <h3>Customer Management</h3>

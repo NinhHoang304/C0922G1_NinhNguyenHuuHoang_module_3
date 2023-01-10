@@ -18,4 +18,6 @@ public interface ICustomerService {
 
     // customer type method
     List<CustomerType> selectAllCustomerType();
+
+    List<Customer> searchCustomer(String name, String customerType);
 }

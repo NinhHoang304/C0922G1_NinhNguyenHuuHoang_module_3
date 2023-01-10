@@ -39,4 +39,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<CustomerType> selectAllCustomerType() {
         return this.customerRepository.selectAllCustomerType();
     }
+
+    @Override
+    public List<Customer> searchCustomer(String name, String customerType) {
+        return this.customerRepository.searchCustomer(name, customerType);
+    }
 }

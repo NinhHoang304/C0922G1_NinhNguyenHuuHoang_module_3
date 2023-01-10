@@ -19,6 +19,7 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
     private final String SELECT_ALL_CUSTOMER = "select * from customer;";
     private final String SELECT_ALL_CUSTOMER_TYPE = "select * from customer_type;";
     private final String SELECT_CUSTOMER_BY_ID = "select * from customer where id = ?;";
+    private final String SEARCH_BY_NAME_AND_CUSTOMER_TYPE = "select * from customer c join customer_type ct on c.customer_type_id = ct.id where c.name like ? and ct.name like ?;";
     private final String UPDATE_CUSTOMER = "update customer set customer_type_id = ?,  name = ?, day_of_birth=?, gender=?, id_card = ?," +
             "phone_number=?, email=?,address=? where id = ?;";
     private final String INSERT_CUSTOMER = "insert into customer(customer_type_id,name,day_of_birth,gender,id_card,phone_number,email,address) values(?,?,?,?,?,?,?,?)";
@@ -148,5 +149,33 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
             throw new RuntimeException(e);
         }
         return customerTypeList;
+    }
+
+    @Override
+    public List<Customer> searchCustomer(String name, String customerType) {
+        List<Customer> customerList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME_AND_CUSTOMER_TYPE);
+            preparedStatement.setString(1, "%"+name+"%");
+            preparedStatement.setString(2, "%"+customerType+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int idCustomer = resultSet.getInt("id");
+                int customerTypeId = resultSet.getInt("customer_type_id");
+                String nameCustomer = resultSet.getString("name");
+                String date = resultSet.getString("day_of_birth");
+                boolean gender = resultSet.getBoolean("gender");
+                String idCard = resultSet.getString("id_card");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                customerList.add(new Customer(idCustomer, customerTypeId, name, date, gender, idCard,
+                        phoneNumber, email, address));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customerList;
     }
 }

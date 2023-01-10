@@ -27,8 +27,25 @@ public class CustomerServlet extends HttpServlet {
             case "edit":
                 showEditForm(request, response);
                 break;
+            case "search":
+                searchByNameAndCustomerType(request, response);
+                break;
             default:
                 listCustomer(request, response);
+        }
+    }
+
+    private void searchByNameAndCustomerType(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String customerType = request.getParameter("customerType");
+        List<Customer> customerList = this.customerService.searchCustomer(name, customerType);
+        List<CustomerType> customerTypeList = this.customerService.selectAllCustomerType();
+        request.setAttribute("customerList", customerList);
+        request.setAttribute("customerTypeList", customerTypeList);
+        try {
+            request.getRequestDispatcher("view/customer.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -56,6 +73,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void listCustomer(HttpServletRequest request, HttpServletResponse response) {
+        List<CustomerType> customerTypeList = this.customerService.selectAllCustomerType();
+        request.setAttribute("customerTypeList", customerTypeList);
         List<Customer> customerList = this.customerService.selectAllCustomer();
         request.setAttribute("customerList", customerList);
         try {
