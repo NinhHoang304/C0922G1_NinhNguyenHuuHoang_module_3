@@ -21,14 +21,14 @@
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin: 5px 0 80px 0;">
+<div style="width: 96%; margin: 0 auto">
     <div id="title">
         <h3>Employee Management</h3>
     </div>
     <div id="add">
         <div id="add-content">
             <button class="btn btn-success">
-                <a href="/facility?action=create">Create new employee</a>
+                <a href="/employee?action=create">Create new employee</a>
             </button>
             <span style="color: #146c43; float: right">${mess}</span>
         </div>

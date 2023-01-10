@@ -20,8 +20,21 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action){
+            case "create":
+                showCreateForm(request, response);
+                break;
+            case "edit":
+                break;
             default:
                 listCustomer(request, response);
+        }
+    }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher("view/customer_create.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -42,9 +55,9 @@ public class CustomerServlet extends HttpServlet {
             action = "";
         }
         switch (action){
-            case "create":
+            case "save":
                 break;
-            case "edit":
+            case "update":
                 break;
             case "delete":
                 deleteCustomer(request, response);

@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Facility Manager</title>
+    <title>Customer Manager</title>
     <link rel="stylesheet" href="../view/home/bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../view/home/furama_style.css">
     <link rel="stylesheet" href="../view/home/media_style.css">
@@ -21,14 +21,14 @@
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
 <c:import url="../view/home/navbar.jsp"></c:import>
-<div style="margin: 5px 0 80px 0;">
+<div style="width: 96%; margin: 0 auto">
     <div id="title">
         <h3>Customer Management</h3>
     </div>
     <div id="add">
         <div id="add-content">
             <button class="btn btn-success">
-                <a href="/facility?action=create">Create new customer</a>
+                <a href="/customer?action=create">Create new employee</a>
             </button>
             <span style="color: #146c43; float: right">${mess}</span>
         </div>
@@ -114,8 +114,45 @@
         document.getElementById("deleteName").innerText = name;
     }
 </script>
+<!-- Modal Create -->
+<%--<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h1 class="modal-title fs-5" id="">Create Customer</h1>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                <form action="">--%>
+<%--                    <div class="container">--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="col-md-4">Id Customer</div>--%>
+<%--                            <div class="col-md-8">: <input type="number" name="id" required></div>--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="col-md-4">Customer Type</div>--%>
+<%--                            <div class="col-md-8">:--%>
+<%--                                <select name="customerType">--%>
+<%--                                    <option value=""></option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="col-md-4">Name Customer</div>--%>
+<%--                            <div class="col-md-8">: <input type="text" name="name" required></div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 </body>
-<script src="../view/home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<script src="home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>
 <%--Phân trang--%>
 <script src="../jquery/jquery-3.5.1.min.js"></script>
