@@ -49,22 +49,22 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items='${contractList}' var="contractList">
+            <c:forEach items='${contractList}' var="facilityList">
                 <tr>
-                    <td>${contractList.id}</td>
-                    <td>${contractList.startDate}</td>
-                    <td>${contractList.endDate}</td>
-                    <td>${contractList.deposit}</td>
-                    <td>${contractList.employeeId}</td>
-                    <td>${contractList.customerId}</td>
-                    <td>${contractList.facilityId}</td>
+                    <td>${facilityList.id}</td>
+                    <td>${facilityList.startDate}</td>
+                    <td>${facilityList.endDate}</td>
+                    <td>${facilityList.deposit}</td>
+                    <td>${facilityList.employeeId}</td>
+                    <td>${facilityList.customerId}</td>
+                    <td>${facilityList.facilityId}</td>
                     <td>
-                        <a href="/contract?action=edit&id=${contractList.id}">
+                        <a href="/contract?action=edit&id=${facilityList.id}">
                             <button class="btn btn-sm btn-primary">+</button>
                         </a>
                     </td>
                     <td>
-                        <a href="/contract?action=edit&id=${contractList.id}">
+                        <a href="/contract?action=edit&id=${facilityList.id}">
                             <button class="btn btn-sm btn-primary">Attach Facility List</button>
                         </a>
                     </td>

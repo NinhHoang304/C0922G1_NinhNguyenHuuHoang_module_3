@@ -18,6 +18,9 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 
     private final String SELECT_ALL_CUSTOMER = "select * from customer;";
     private final String SELECT_ALL_CUSTOMER_TYPE = "select * from customer_type;";
+    private final String SELECT_CUSTOMER_BY_ID = "select * from customer where id = ?;";
+    private final String UPDATE_CUSTOMER = "update customer set customer_type_id = ?,  name = ?, day_of_birth=?, gender=?, id_card = ?," +
+            "phone_number=?, email=?,address=? where id = ?;";
     private final String INSERT_CUSTOMER = "insert into customer(customer_type_id,name,day_of_birth,gender,id_card,phone_number,email,address) values(?,?,?,?,?,?,?,?)";
     private final String DELETE_CUSTOMER_BY_ID = "delete from customer where id = ?;";
 
@@ -49,7 +52,29 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 
     @Override
     public Customer selectCustomerById(int id) {
-        return null;
+        Connection connection = BaseRepository.getConnectDB();
+        Customer customer = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int idCustomer = resultSet.getInt("id");
+                int customerTypeId = resultSet.getInt("customer_type_id");
+                String name = resultSet.getString("name");
+                String date = resultSet.getString("day_of_birth");
+                boolean gender = resultSet.getBoolean("gender");
+                String idCard = resultSet.getString("id_card");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                customer = new Customer(idCustomer, customerTypeId, name, date, gender, idCard,
+                        phoneNumber, email, address);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customer;
     }
 
     @Override
@@ -74,6 +99,22 @@ public class CustomerRepositoryImpl implements ICustomerRepository {
 
     @Override
     public boolean updateCustomer(Customer customer) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CUSTOMER);
+            preparedStatement.setInt(1, customer.getCustomerTypeId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setString(3, customer.getDayOfBirth());
+            preparedStatement.setBoolean(4, customer.isGender());
+            preparedStatement.setString(5, customer.getIdCard());
+            preparedStatement.setString(6, customer.getPhoneNumber());
+            preparedStatement.setString(7, customer.getEmail());
+            preparedStatement.setString(8,customer.getAddress());
+            preparedStatement.setInt(9, customer.getId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

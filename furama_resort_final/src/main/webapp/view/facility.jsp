@@ -54,28 +54,28 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items='${facilityList}' var="contractList">
+            <c:forEach items='${facilityList}' var="facilityList">
                 <tr>
-                    <td>${contractList.id}</td>
-                    <td>${contractList.name}</td>
-                    <td>${contractList.area}</td>
-                    <td>${contractList.cost}</td>
-                    <td>${contractList.maxPeople}</td>
-<%--                    <td>${employee.rentTypeId}</td>--%>
-<%--                    <td>${employee.facilityTypeId}</td>--%>
-                    <td>${contractList.standardRoom}</td>
-                    <td>${contractList.descriptionOtherConvenience}</td>
-                    <td>${contractList.poolArea}</td>
-                    <td>${contractList.numberOfFloors}</td>
-                    <td>${contractList.facilityFree}</td>
+                    <td>${facilityList.id}</td>
+                    <td>${facilityList.name}</td>
+                    <td>${facilityList.area}</td>
+                    <td>${facilityList.cost}</td>
+                    <td>${facilityList.maxPeople}</td>
+<%--                    <td>${facilityList.rentTypeId}</td>--%>
+<%--                    <td>${facilityList.facilityTypeId}</td>--%>
+                    <td>${facilityList.standardRoom}</td>
+                    <td>${facilityList.descriptionOtherConvenience}</td>
+                    <td>${facilityList.poolArea}</td>
+                    <td>${facilityList.numberOfFloors}</td>
+                    <td>${facilityList.facilityFree}</td>
                     <td>
-                        <a href="/facility?action=edit&id=${contractList.id}">
+                        <a href="/facility?action=edit&id=${facilityList.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                         <%--Modal Delete--%>
-                        <button onclick="infoDelete('${contractList.id}','${contractList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                        <button onclick="infoDelete('${facilityList.id}','${facilityList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
                         </button>

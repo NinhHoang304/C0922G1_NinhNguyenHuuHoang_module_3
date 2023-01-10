@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Customer selectCustomerById(int id) {
-        return null;
+        return this.customerRepository.selectCustomerById(id);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public boolean updateCustomer(Customer customer) {
-        return false;
+        return this.customerRepository.updateCustomer(customer);
     }
 
     @Override

@@ -54,28 +54,28 @@
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach items='${employeeList}' var="contractList">
+            <c:forEach items='${employeeList}' var="employeeList">
                 <tr>
-                    <td>${contractList.id}</td>
-                    <td>${contractList.name}</td>
-                    <td>${contractList.dayOfBirth}</td>
-                    <td>${contractList.idCard}</td>
-                    <td>${contractList.salary}</td>
-                    <td>${contractList.phoneNumber}</td>
-                    <td>${contractList.email}</td>
-                    <td>${contractList.address}</td>
-<%--                    <td>${employee.positionId}</td>--%>
-<%--                    <td>${employee.educationDegreeId}</td>--%>
-<%--                    <td>${employee.divisionId}</td>--%>
-                    <td>${contractList.userName}</td>
+                    <td>${employeeList.id}</td>
+                    <td>${employeeList.name}</td>
+                    <td>${employeeList.dayOfBirth}</td>
+                    <td>${employeeList.idCard}</td>
+                    <td>${employeeList.salary}</td>
+                    <td>${employeeList.phoneNumber}</td>
+                    <td>${employeeList.email}</td>
+                    <td>${employeeList.address}</td>
+<%--                    <td>${employeeList.positionId}</td>--%>
+<%--                    <td>${employeeList.educationDegreeId}</td>--%>
+<%--                    <td>${employeeList.divisionId}</td>--%>
+                    <td>${employeeList.userName}</td>
                     <td>
-                        <a href="/employee?action=edit&id=${contractList.id}">
+                        <a href="/employee?action=edit&id=${employeeList.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                             <%--Modal Delete--%>
-                        <button onclick="infoDelete('${contractList.id}','${contractList.name}')" class="btn btn-sm btn-danger"
+                        <button onclick="infoDelete('${employeeList.id}','${employeeList.name}')" class="btn btn-sm btn-danger"
                                 type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete

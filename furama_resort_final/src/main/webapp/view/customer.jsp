@@ -28,7 +28,7 @@
     <div id="add">
         <div id="add-content">
             <button class="btn btn-success">
-                <a href="/customer?action=create">Create new employee</a>
+                <a href="/customer?action=create">Create new customer</a>
             </button>
             <span style="color: #146c43; float: right">${mess}</span>
         </div>
@@ -51,30 +51,30 @@
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach items='${customerList}' var="contractList">
+            <c:forEach items='${customerList}' var="customerList">
                 <tr>
-                    <td>${contractList.id}</td>
-<%--                    <td>${employee.customerTypeId}</td>--%>
-                    <td>${contractList.name}</td>
-                    <td>${contractList.dayOfBirth}</td>
-                    <c:if test="${contractList.gender}">
+                    <td>${customerList.id}</td>
+<%--                    <td>${customerList.customerTypeId}</td>--%>
+                    <td>${customerList.name}</td>
+                    <td>${customerList.dayOfBirth}</td>
+                    <c:if test="${customerList.gender}">
                         <td>Nam</td>
                     </c:if>
-                    <c:if test="${!contractList.gender}">
+                    <c:if test="${!customerList.gender}">
                         <td>Nữ</td>
                     </c:if>
-                    <td>${contractList.idCard}</td>
-                    <td>${contractList.phoneNumber}</td>
-                    <td>${contractList.email}</td>
-                    <td>${contractList.address}</td>
+                    <td>${customerList.idCard}</td>
+                    <td>${customerList.phoneNumber}</td>
+                    <td>${customerList.email}</td>
+                    <td>${customerList.address}</td>
                     <td>
-                        <a href="/customer?action=edit&id=${contractList.id}">
+                        <a href="/customer?action=edit&id=${customerList.id}">
                             <button class="btn btn-sm btn-primary">Edit</button>
                         </a>
                     </td>
                     <td>
                             <%--Modal Delete--%>
-                        <button onclick="infoDelete('${contractList.id}','${contractList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
+                        <button onclick="infoDelete('${customerList.id}','${customerList.name}')" class="btn btn-sm btn-danger" type="button" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             Delete
                         </button>

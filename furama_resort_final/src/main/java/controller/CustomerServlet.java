@@ -25,9 +25,23 @@ public class CustomerServlet extends HttpServlet {
                 showCreateForm(request, response);
                 break;
             case "edit":
+                showEditForm(request, response);
                 break;
             default:
                 listCustomer(request, response);
+        }
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<CustomerType> customerTypeList = this.customerService.selectAllCustomerType();
+        Customer customer = this.customerService.selectCustomerById(id);
+        request.setAttribute("customer", customer);
+        request.setAttribute("customerTypeList", customerTypeList);
+        try {
+            request.getRequestDispatcher("view/customer_edit.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -62,10 +76,36 @@ public class CustomerServlet extends HttpServlet {
                 insertCustomer(request, response);
                 break;
             case "update":
+                updateCustomer(request, response);
                 break;
             case "delete":
                 deleteCustomer(request, response);
                 break;
+        }
+    }
+
+    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));
+        String name = request.getParameter("name");
+        String dayOfBirth = request.getParameter("dayOfBirth");
+        boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+        String idCard = request.getParameter("idCard");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        Customer customer = new Customer(id, customerTypeId, name, dayOfBirth, gender,
+                idCard, phoneNumber, email, address);
+        boolean check = this.customerService.updateCustomer(customer);
+        String mess = "Sửa thành công";
+        if (!check){
+            mess = "Sửa không thành công";
+        }
+        request.setAttribute("mess", mess);
+        try {
+            request.getRequestDispatcher("view/customer_edit.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
