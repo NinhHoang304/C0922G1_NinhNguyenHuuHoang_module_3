@@ -1,0 +1,26 @@
+/*title*/
+#title h3 {
+    text-align: center;
+}
+
+/*body-content-crud*/
+#body-content-crud{
+    height: 700px;
+}
+/*create*/
+#add-content {
+    margin: 5px;
+}
+#add-content a{
+    color: white;
+    text-decoration: none;
+}
+
+/*border td*/
+td, th{
+    border: 1px solid #ddd !important;
+}
+
+th{
+    font-size: smaller !important;
+}
