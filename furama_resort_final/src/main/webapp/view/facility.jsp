@@ -20,18 +20,51 @@
 </head>
 <body>
 <c:import url="../view/home/header.jsp"></c:import>
-<c:import url="../view/home/navbar.jsp"></c:import>
+<div class="row" id="header-link">
+    <div id="content-body">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/furama">Giới Thiệu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employee">Nhân Viên</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/customer">Khách Hàng</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dịch Vụ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0; margin-top: 7px;">
+                                <li><a class="dropdown-item" style="background-color: #046056" href="/facility">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Villa</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Room</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới House</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contract">Hợp Đồng</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" style="margin: 0">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" style="color: white">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
 <div style="width: 96%;height: 500px; margin: 0 auto">
     <div id="title">
         <h3>Facility Management</h3>
-    </div>
-    <div id="add">
-        <div id="add-content">
-            <button class="btn btn-success">
-                <a href="/facility?action=create">Create new facility</a>
-            </button>
-            <span style="color: #146c43; float: right">${mess}</span>
-        </div>
     </div>
     <div id="list">
         <table id="tablePaging" class="table table-striped table-hover table-bordered" style="width: 100%;">

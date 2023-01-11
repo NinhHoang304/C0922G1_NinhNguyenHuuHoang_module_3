@@ -38,8 +38,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/customer">Khách Hàng</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/facility">Dịch Vụ</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dịch Vụ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0;margin-top: 7px;">
+                                <li><a class="dropdown-item" style="background-color: #046056" href="/facility">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Villa</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Room</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới House</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contract">Hợp Đồng</a>
@@ -153,45 +161,8 @@
         document.getElementById("deleteName").innerText = name;
     }
 </script>
-<!-- Modal Create -->
-<%--<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--    <div class="modal-dialog">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <h1 class="modal-title fs-5" id="">Create Customer</h1>--%>
-<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body">--%>
-<%--                <form action="">--%>
-<%--                    <div class="container">--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-md-4">Id Customer</div>--%>
-<%--                            <div class="col-md-8">: <input type="number" name="id" required></div>--%>
-<%--                        </div>--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-md-4">Customer Type</div>--%>
-<%--                            <div class="col-md-8">:--%>
-<%--                                <select name="customerType">--%>
-<%--                                    <option value=""></option>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="row">--%>
-<%--                            <div class="col-md-4">Name Customer</div>--%>
-<%--                            <div class="col-md-8">: <input type="text" name="name" required></div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
-<%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 </body>
-<script src="home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<script src="../view/home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>
 <%--Phân trang--%>
 <script src="../jquery/jquery-3.5.1.min.js"></script>

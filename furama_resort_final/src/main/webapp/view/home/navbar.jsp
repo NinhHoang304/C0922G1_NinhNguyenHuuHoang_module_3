@@ -30,8 +30,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/customer">Khách Hàng</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/facility">Dịch Vụ</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dịch Vụ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0;margin-top: 7px;">
+                                <li><a class="dropdown-item" style="background-color: #046056" href="/facility">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Villa</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Room</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới House</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contract">Hợp Đồng</a>
