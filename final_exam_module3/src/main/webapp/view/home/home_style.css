@@ -1,0 +1,147 @@
+#header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#content-header {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+#logo {
+    width: 40%;
+}
+
+#logo img {
+    width: 50px;
+    height: 80px;
+}
+
+#address {
+    width: 30%;
+}
+
+#address p {
+    width: 80%;
+    font-size: 13px;
+    line-height: 1em;
+}
+
+#contact {
+    width: 30%;
+}
+
+#contact p {
+    width: 80%;
+    font-size: 13px;
+    line-height: 1em;
+}
+
+/*body*/
+#header-link {
+    width: 100%;
+    background-color: #046056;
+    margin: 0;
+}
+
+#content-body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+#content-body a {
+    color: white;
+    font-size: 15px;
+}
+
+/*slide*/
+#content-slide {
+    width: 100%;
+    height: 70%;
+}
+
+#content-slide img {
+    height: 100%;
+}
+
+/*roomType*/
+#roomType {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#content-roomType {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#content-roomType h4 {
+    text-align: center;
+}
+
+#content-roomType p {
+    font-size: 13px;
+    text-indent: 20px;
+}
+
+/*slide roomType*/
+#slide-roomType {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#content-slide-roomType {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content-slide-roomType img {
+    width: 100%;
+    height: 200px;
+}
+
+#content-slide-roomType p {
+    margin: 0 0 0 10px;
+    font-size: 13px;
+}
+
+/*footer*/
+#footer {
+    width: 100%;
+    background-color: #addccf;
+    margin: 0;
+}
+
+#content-footer {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+#tutorial {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#footer-2 {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#footer-2 a {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+#footer-2 a:hover {
+    border-bottom: 1px solid #157347;
+    color: #157347;
+}
+#footer-contact p{
+    margin: 0;
+    font-size: 13px;
+}
