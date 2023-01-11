@@ -1,6 +1,8 @@
 package service.impl;
 
 import model.Facility;
+import model.FacilityType;
+import model.RentType;
 import repository.IFacilityRepository;
 import repository.impl.FacilityRepositoryImpl;
 import service.IFacilityService;
@@ -13,6 +15,16 @@ public class FacilityServiceImpl implements IFacilityService {
     @Override
     public List<Facility> selectAllFacility() {
         return this.facilityRepository.selectAllFacility();
+    }
+
+    @Override
+    public List<FacilityType> selectAllFacilityType() {
+        return this.facilityRepository.selectAllFacilityType();
+    }
+
+    @Override
+    public List<RentType> selectAllRentType() {
+        return this.facilityRepository.selectAllRentType();
     }
 
     @Override
