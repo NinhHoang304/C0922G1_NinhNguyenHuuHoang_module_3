@@ -24,7 +24,7 @@
     <div id="content-body">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/furama">Giới Thiệu</a>
+                <a class="navbar-brand" href="/home">Giới Thiệu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,24 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/employee">Nhân Viên</a>
+                            <a class="nav-link" href="#">Nhân Viên</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/customer">Khách Hàng</a>
+                            <a class="nav-link" href="#">Khách Hàng</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dịch Vụ
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 0;margin-top: 7px;">
-                                <li><a class="dropdown-item" style="background-color: #046056" href="/facility">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" style="background-color: #046056" href="#">Danh sách khách hàng</a></li>
                                 <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Villa</a></li>
                                 <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới Room</a></li>
                                 <li><a class="dropdown-item" style="background-color: #046056" href="#">Thêm mới House</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contract">Hợp Đồng</a>
+                            <a class="nav-link" href="#">Hợp Đồng</a>
                         </li>
                     </ul>
                     <form class="d-flex" style="margin: 0" role="search" method="get">
@@ -93,7 +93,7 @@
                 <td>1</td>
                 <td>Hoang</td>
                 <td>
-                    <a href="/customer?action=edit&id=${customerList.id}">
+                    <a href="/customer?action=edit&id=0">
                         <button class="btn btn-sm btn-primary">Edit</button>
                     </a>
                 </td>
