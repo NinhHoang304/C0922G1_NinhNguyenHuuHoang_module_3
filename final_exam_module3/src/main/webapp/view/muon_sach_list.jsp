@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 11/1/2023
-  Time: 11:01 PM
+  Date: 12/1/2023
+  Time: 10:53 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -29,25 +29,32 @@
         <table id="tablePaging" class="table table-striped table-hover table-bordered" style="width: 100%;">
             <thead class="border">
             <tr>
-                <th>Mã Sách</th>
+                <th>Mã Mượn Sách</th>
                 <th>Tên Sách</th>
                 <th>Tác Giả</th>
-                <th>Số Lượng</th>
-                <th>Mô tả</th>
-                <th>Mượn sách37</th>
+                <th>Tên Học Sinh</th>
+                <th>Lớp</th>
+                <th>Ngày Mượn</th>
+                <th>Ngày Trả</th>
             </tr>
             </thead>
             <tbody class="border">
-            <c:forEach var="sach" items="${sachList}">
+            <c:forEach var="muonSach" items="${theMuonSachList}">
                 <tr>
-                    <td>${sach.maSach}</td>
-                    <td>${sach.tenSach}</td>
-                    <td>${sach.tacGia}</td>
-                    <td>${sach.soLuong}</td>
-                    <td>${sach.moTa}</td>
+                    <td>${muonSach.maMuonSach}</td>
+                    <td>
+                        <c:forEach var="sach" items="${sachList}">
+<%--                            <c:if test="${sach.maSach}"--%>
+                        </c:forEach>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>${muonSach.ngayMuon}</td>
+                    <td>${muonSach.ngayTra}</td>
                     <td>
                         <button class="btn btn-primary">
-                            <a href="/sach?action=create" style="color:white; text-decoration: none;">Mượn</a>
+                            <a href="/sach?action=create" style="color:white; text-decoration: none;">Trả sách</a>
                         </button>
                     </td>
                 </tr>

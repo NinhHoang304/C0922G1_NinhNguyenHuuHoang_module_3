@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Furama Resort DaNang</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="../view/home/bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../view/home/home_style.css">
     <link rel="stylesheet" href="../view/home/media_style.css">

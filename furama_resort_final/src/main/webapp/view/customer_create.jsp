@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td>Name:</td>
-                    <td><input class="form-control" name="name" type="text" placeholder="Name input"
+                    <td><input required pattern="^[A-Z][a-z]*(\s[A-Z][a-z]*)+$" title="Tên chưa đúng định dạng" class="form-control" name="name" type="text" placeholder="Name input"
                                aria-label="default input example"></td>
                 </tr>
                 <tr>

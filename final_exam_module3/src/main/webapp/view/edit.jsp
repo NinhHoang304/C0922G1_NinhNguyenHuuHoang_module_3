@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="../view/home/furama_style.css">
     <link rel="stylesheet" href="../view/home/media_style.css">
     <link rel="stylesheet" href="../view/facility_style.css">
+    <link rel="stylesheet" href="../view/home/home_style.css">
+    <link rel="stylesheet" href="../view/style.css">
     <%--    phân trang--%>
     <link rel="stylesheet" href="../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../datatables/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
-<c:import url="home/header.jsp"></c:import>
-<c:import url="home/navbar.jsp"></c:import>
+
 <div style="width: 96%; margin: 0 auto">
     <div id="title">
         <h3>Edit new customer</h3>
@@ -103,7 +104,7 @@
         </form>
     </div>
 </div>
-<c:import url="home/footer.jsp"></c:import>
+
 </body>
 <script src="home/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 <script src="https://kit.fontawesome.com/b9122f2b4f.js" crossorigin="anonymous"></script>
