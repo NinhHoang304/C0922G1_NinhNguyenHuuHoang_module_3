@@ -27,6 +27,8 @@ public class DictionaryController {
             case "Bird":
                 rs = "Chim";
                 break;
+            default:
+                rs = "Không dịch được";
         }
         model.addAttribute("rs", rs);
         return "index";
