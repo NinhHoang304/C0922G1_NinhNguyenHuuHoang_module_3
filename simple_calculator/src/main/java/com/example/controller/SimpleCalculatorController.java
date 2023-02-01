@@ -29,7 +29,7 @@ public class SimpleCalculatorController {
                 rs = number1 * number2;
                 break;
             case "/":
-                if (number1 == 0){
+                if (number2 == 0){
                     mess = "Invalid number";
                 }else {
                     rs = number1 / number2;
